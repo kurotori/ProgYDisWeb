@@ -63,8 +63,9 @@
         /**
          * Otra forma de mostrar el contenido de una variable dentro de un texto usando el comando echo es
          * mediante comillas dobles (" "). Dentro de las comillas dobles las variables se reemplazan por su contenido
-         * sin necesidad de usar una concatenación. Este método no funciona con el resultado de las funciones (como gettype)
-         * el cual debe concatenarse o almacenarse en una variable para ser mostrado.
+         * sin necesidad de usar una concatenación. 
+         * Este método no funciona con el resultado de las funciones (como gettype) el cual debe concatenarse o 
+         * almacenarse en una variable para ser mostrado.
          * Otra limitación de las comillas dobles es que consumen más recursos que las comillas simples, por lo que se recomienda
          * utilizarlas solo cuando es estríctamente necesario.
          */
