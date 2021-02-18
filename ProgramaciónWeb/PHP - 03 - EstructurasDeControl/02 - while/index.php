@@ -8,11 +8,7 @@
 </head>
 <body>
 
-    <h1>Una lista generada con un bucle While</h1>
-    <ol>
-
-        <?php
-
+    <?php
         /**
          * El bucle WHILE permite ejecutar un conjunto de instrucciones de forma repetitiva
          * mientras una condición se cumpla. Si la condición no se cumple, se termina la ejecución
@@ -30,6 +26,13 @@
          *      }
          * 
          */
+    ?>
+
+
+    <h1>Una lista generada con un bucle While</h1>
+    <ol>
+
+        <?php
 
         $numero = 1;
 
