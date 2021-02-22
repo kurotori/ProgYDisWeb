@@ -11,7 +11,7 @@
     }
     else {
         $_SESSION['nombreUsuario'] = $_POST['nombreUsuario'];
-        session_name( $_SESSION['nombreUsuario'] );
+        
         $nombreUsuario = $_SESSION['nombreUsuario'];
         $estado = "Se inició una sesión a nombre de: $nombreUsuario";
     }    
