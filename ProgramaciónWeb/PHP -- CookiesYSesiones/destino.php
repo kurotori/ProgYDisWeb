@@ -35,7 +35,7 @@
 
     <p>
         <?php
-            echo 'ID de sesión: <b>'.session_id().'</b> '.session_name();
+            echo 'ID de sesión: <b>'.session_id().'</b> ';
         ?>
     </p>
 
