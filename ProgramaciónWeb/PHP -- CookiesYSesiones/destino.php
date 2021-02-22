@@ -14,8 +14,7 @@
         session_name( $_SESSION['nombreUsuario'] );
         $nombreUsuario = $_SESSION['nombreUsuario'];
         $estado = "Se inició una sesión a nombre de: $nombreUsuario";
-    }
-
+    }    
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +45,5 @@
         </a>
     </p>
 
-    <?php
-        echo ini_get("session.use_cookies");
-    ?>
 </body>
 </html>

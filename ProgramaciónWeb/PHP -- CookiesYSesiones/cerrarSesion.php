@@ -10,7 +10,7 @@
      }
 
      
-
+     session_regenerate_id();
      session_unset();
      session_destroy();
      $_SESSION = array();
@@ -34,6 +34,7 @@
                 echo $nombreUsuario;
             ?>
         </b><br>
+        
         ID de la sesión cerrada: 
         <b>
             <?php
