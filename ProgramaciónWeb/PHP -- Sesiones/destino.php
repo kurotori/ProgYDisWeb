@@ -5,7 +5,6 @@
     $estado="";
 
     if ( isset( $_SESSION['nombreUsuario'] ) ) {
-        //session_name( session_id() );
         $nombreUsuario = $_SESSION['nombreUsuario'];
         $estado = "Se recuperó una sesión existente a nombre de: $nombreUsuario";
     }
