@@ -11,7 +11,7 @@
 
     <!-- 
         En este primer acercamiento al manejo de una estructura de página web
-        usaremos la siguietne maqueta: 
+        usaremos la siguiente maqueta: 
 
  -->
 
