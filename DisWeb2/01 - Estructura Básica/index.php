@@ -9,19 +9,10 @@
 </head>
 <body>
 
-    <!-- 
-        En este primer acercamiento al manejo de una estructura de página web
-        usaremos la siguiente maqueta: 
-
- -->
-
-
-
-    <div id="banner">
-        <div id="ticker"></div>
-    </div>
-    <div id="menu"></div>
-    <div id="contenido"></div>
+    <div id="area_encabezado" class="fila"></div>
+    <div id="area_menu" class="fila"></div>
+    <div id="area_contenido" class="fila"></div>
+    <div id="pie_de_pagina" class="fila"></div>
     
 </body>
 </html>

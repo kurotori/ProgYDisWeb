@@ -1,0 +1,38 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px; 
+}
+
+/* Esta forma de plantear selectores es equivalente al siguiente código CSS: 
+    html{
+        width: 100%;
+        height: 100%;
+    }
+
+    body{
+        width: 100%;
+        height: 100%;
+    }
+
+    La coma indica que las propiedades se deben aplicar a TODOS los elementos indicados
+    separados por coma.
+*/
+.fila{
+    width: 100%;
+}
+
+#area_encabezado{
+    height: 15%;
+    background-color: lightblue;
+}
+
+#area_menu, #pie_de_pagina{
+    height: 5%;
+    background-color: lightgreen;
+}
+
+#area_contenido{
+    height: 75%;
+    background-color: lightblue;
+}
