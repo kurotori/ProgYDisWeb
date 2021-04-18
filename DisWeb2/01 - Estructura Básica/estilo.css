@@ -18,6 +18,7 @@ html,body{
     La coma indica que las propiedades se deben aplicar a TODOS los elementos indicados
     separados por coma.
 */
+
 .fila{
     width: 100%;
 }
@@ -35,4 +36,47 @@ html,body{
 #area_contenido{
     height: 75%;
     background-color: lightblue;
+}
+
+#contenido{
+    float: left;
+    height: 100%;
+    width: 60%;
+    background-color: coral;
+}
+
+.area_auxiliar{
+    float: left;
+    height: 100%;
+    width: 20%;
+}
+
+#auxiliar_der{
+    background-color: blue;
+}
+
+#auxiliar_izq{
+    background-color: red;
+}
+
+.boton{
+    float: left;
+    width: 10%;
+    height: 90%;
+    border: solid 2px yellow;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    background-color: green;
+}
+
+.boton:hover{
+    background-color: lightgreen;
+    color: black;
+}
+
+.boton:active{
+    background-color: brown;
+    color: black;
+    font-weight: bold;
 }
