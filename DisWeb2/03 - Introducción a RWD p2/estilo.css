@@ -1,0 +1,52 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px; 
+}
+
+#areaSuperior{
+    width: 100%;
+    height: 30% ;
+}
+
+#verde{
+    height: 100%;
+    width: 50%;
+    background-color: seagreen;
+    float: left;
+}
+
+#naranja{
+    background-color: sandybrown;
+}
+
+#celeste{
+
+    background-color: cornflowerblue;
+}
+
+.secundario{
+    float: right;
+    height: 50%;
+    width: 50%;
+}
+
+@media only screen and (min-width: 768px) {
+    /* Estilo Para PC */
+    #areaSuperior{
+        width: 100%;
+        height: 50% ;
+    }
+    
+    #verde{
+        height: 100%;
+        width: 33.33%;
+        float: left;
+    }
+    
+    .secundario{
+        float: left;
+        height: 100%;
+        width: 33.33%;
+    }
+}

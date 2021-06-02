@@ -1,0 +1,22 @@
+img{
+    /*width: 100%;*/
+    max-width: 100%;
+  }
+  
+  p{
+    font-size: 3vh;
+  }
+  
+  h1{
+    font-size: 5vh;
+  }
+  
+  h2{
+    font-size: 4vh;
+  }
+
+  @media screen and (max-width: 800px) {
+    .left, .main, .right {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+  }

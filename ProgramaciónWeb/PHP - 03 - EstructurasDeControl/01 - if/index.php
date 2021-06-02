@@ -40,7 +40,7 @@
          echo 'El número es menor que 30';
      }
      else {
-         echo 'El número es mayor o igual que 30';
+         echo ('El número es mayor o igual que 30');
      }
 
      echo '</h1>';

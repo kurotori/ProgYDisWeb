@@ -1,0 +1,83 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px; 
+}
+
+/*Clases para Tamaño por Columnas */
+
+.col_1 {
+    width: 8.33%;
+}
+.col_2 {
+    width: 16.67%;
+}
+.col_3 {
+    width: 25%;
+}
+.col_4 {
+    width: 33.33%;
+}
+.col_5 {
+    width: 41.67%;
+}
+.col_6 {
+    width: 50%;
+}
+.col_7 {
+    width: 58.33%;
+}
+.col_8 {
+    width: 66.66%;
+}
+.col_9 {
+    width: 75%;
+}
+.col_10 {
+    width: 83.33%;
+}
+.col_11 {
+    width: 91.67%;
+}
+.col_12 {
+    width: 100%;
+}
+
+/*Clases para Tamaño por Filas */
+
+.fil_1 {
+    height: 8.33%;
+}
+.fil_2 {
+    height: 16.67%;
+}
+.fil_3 {
+    height: 25%;
+}
+.fil_4 {
+    height: 33.33%;
+}
+.fil_5 {
+    height: 41.67%;
+}
+.fil_6 {
+    height: 50%;
+}
+.fil_7 {
+    height: 58.33%;
+}
+.fil_8 {
+    height: 66.66%;
+}
+.fil_9 {
+    height: 75%;
+}
+.fil_10 {
+    height: 83.33%;
+}
+.fil_11 {
+    height: 91.67%;
+}
+.fil_12 {
+    height: 100%;
+}
