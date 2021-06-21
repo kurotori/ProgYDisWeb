@@ -7,7 +7,7 @@
     <title>Cookies y Sesiones en PHP</title>
 </head>
 <body>
-    <form action="destino.php" id="formulario" method="post">
+    <form action="abrirSesion.php" id="formulario" method="post">
         <label for="nombreUsuario">Nombre:</label>
         <input type="text" name="nombreUsuario" id="nombreUsuario">
 

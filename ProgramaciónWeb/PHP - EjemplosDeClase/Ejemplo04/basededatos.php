@@ -16,11 +16,10 @@
     }
 
 
-
     function ObtenerLibrosEnTabla(){
         $conexion = CrearConexion();
 
-        $consulta = "SELECT titulo,genero,fecha_pub,ISBN from libro order by genero,titulo";
+        $consulta = "SELECT titulo,genero,fecha_pub,ISBN from libro WHERE titulo like 'A%' order by genero,titulo";
 
         $resultado = $conexion->query($consulta);
 
@@ -41,6 +40,8 @@
         else{
             $tabla = "<tr><td colspan=4> No se encontraron libros </td></tr>";
         }
+
+        return $tabla;
     }
 
 ?>
