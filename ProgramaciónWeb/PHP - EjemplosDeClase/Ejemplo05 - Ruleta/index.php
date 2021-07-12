@@ -1,7 +1,7 @@
 <?php
 
 $error="";
-if ( strlen($_GET['error']) > 0 ) {
+if ( isset($_GET['error']) && strlen($_GET['error']) > 0 ) {
     $error = "Error: " . $_GET['error'];
 }
 
