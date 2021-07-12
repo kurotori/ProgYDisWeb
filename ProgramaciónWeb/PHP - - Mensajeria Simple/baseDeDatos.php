@@ -17,4 +17,8 @@ function CrearConexion(){
 }
 
 
+function IniciarSesion($nombre, $ci){
+    
+}
+
 ?>

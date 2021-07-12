@@ -1,8 +1,8 @@
 <?php
-    
+    //Si se detectan cookies, se redirije a la página principal
     if( isset( $_COOKIE['sesionChat'] ) ){
         
-        header("Location: chat/");
+        header("Location: sala/");
         exit();
     }
 
@@ -28,7 +28,7 @@
     <form action="iniciarSesion.php" method="post">
         <table id="tablaInicio">
             <tr>
-                <td>
+                <td class="celdaLabel">
                     <label for="nombre">Nombre:</label>
                 </td>
                 <td>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="nombre">CI:</label>
+                    <label for="ci">CI:</label>
                 </td>
                 <td>
                     <input type="text" name="ci" id="ci">

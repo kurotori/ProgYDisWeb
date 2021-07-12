@@ -35,6 +35,7 @@ h1{
     position: relative;
     width: 80%;
     left: 10%;
+    text-align: center;
 }
 
 .celdaBoton{
@@ -57,4 +58,26 @@ h1{
         top: 0px;
         width: 50%;
     }
+
+    #tablaInicio{
+        font-size: 4vh;
+        width: 60%;
+        left: 20%;
+    }
+
+    #tablaInicio input[type=text]{
+        font-size: 4vh;
+    }
+
+    #btnEntrar{
+        position: relative;
+        top: 3vw;
+        font-size: 4vh;
+        font-weight: bolder;
+        width: 20vw;
+        height: 5vw;
+        white-space: normal;
+    }
+
+
 }
