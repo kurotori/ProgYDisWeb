@@ -4,8 +4,8 @@
 
     function CrearConexion(){
         $servidor="localhost";
-        $usuario="root";
-        $password="soloyoeh";
+        $usuario="seba";
+        $password="las25sopas";
         $bdd="libreria";
 
         $conexion = new mysqli($servidor, $usuario, $password, $bdd);

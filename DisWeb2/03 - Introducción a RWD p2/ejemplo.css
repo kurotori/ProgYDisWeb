@@ -1,0 +1,60 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+#uno{
+    width: 30%;
+    height: 50%;
+    background-color: red;
+    float: left;
+}
+
+#dos{
+    position:relative;
+    width: 30%;
+    height: 50%;
+    left: 5%;
+    background-color: green;
+    float: left;
+}
+
+#tres{
+    position:relative;
+    left: 10%;
+    width: 30%;
+    height: 50%;
+    background-color: blue;
+    float: left;
+}
+
+@media only screen and (min-width: 768px) {
+    #uno{
+        position: relative;
+        width: 25%;
+        height: 95%;
+        float: left;
+        background-color: black;
+    }
+
+    #dos{
+        position: relative;
+        width: 25%;
+        height: 95%;
+        float: left;
+        background-color: purple;
+    }
+
+    #tres{
+        position: relative;
+        width: 25%;
+        height: 95%;
+        float: left;
+        background-color: yellow;
+
+    }
+
+
+
+}
