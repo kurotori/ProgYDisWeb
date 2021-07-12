@@ -2,8 +2,8 @@
 
     function validarDatosSesionPOST(){
         $validacion=false;
-        if ( isset( $_POST['nombre'] ) && isset( $_POST['ci'] ) ) {
-            $validacion = true;
+        if ( strlen( $_POST['nombre'] ) > 0 && strlen( $_POST['ci'] ) > 0 ) {
+            $validacion = true;            
         }
         return $validacion;
     }

@@ -1,6 +1,3 @@
-<?php
-    echo( $_COOKIE['sesionChat'] );
-?>
 
 
 
@@ -10,12 +7,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chateando con </title>
+    <title>Sala de Chat</title>
 </head>
 <body>
     <div id="contenido">
-        <div id="mensajes"></div>
-        <div id="editor"></div>
+        <div id="listausuarios"></div>
+        <div id="mensajesRecibidos"></div>
     </div>
 </body>
 </html>

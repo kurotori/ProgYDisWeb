@@ -7,6 +7,16 @@
     $ci="";
 
     if ( validarDatosSesionPOST() ) {
+        
+    }
+    else{
+        
+    }
+
+
+/*
+    
+    if ( validarDatosSesionPOST() ) {
 
         if ( validarDatosSesionSESSION() ) {
             $nombre = $_SESSION['nombre'];
@@ -20,8 +30,9 @@
             $valorCookie = explode( ':', $_COOKIE['sesionChat'] );
     
             $nombre = $valorCookie[0];
+            $ci = $valorCookie[1];
     
-            $_SESSION['sesionChat'] = $nombre;
+            $_SESSION['nombre'] = $nombre;
     
             setcookie( "sesionChat", $_COOKIE['sesionChat'], time()+3600 );
     
@@ -52,14 +63,16 @@
          * Si no hay datos de POST (o sea que el usuario accedió a esta página sin pasar
          * por el formulario de ingreso.
          */
-        
+
+        /*
         header("Location: index.php");
         exit();
     }
 
-    echo("Usuario: $nombre CI: $ci");
+echo("---->".$_POST['nombre']);
+echo("Usuario: $nombre CI: $ci");
 
-
+*/
 
     
 
