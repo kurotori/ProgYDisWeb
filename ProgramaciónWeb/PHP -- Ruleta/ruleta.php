@@ -57,6 +57,8 @@ if ($apuesta!=0 && $puntaje!=0) {
         ?>
     </h2>
 
+    
+
 
     <form action="ruleta.php" method="post">
         <label for="a1">1</label>
