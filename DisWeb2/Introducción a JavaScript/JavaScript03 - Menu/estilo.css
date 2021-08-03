@@ -1,0 +1,91 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    background-image: url("imagen/fondo.jpg");
+    background-size: cover;
+}
+
+#menu_cuerpo{
+    position: fixed;
+    height: 100%;
+    width: 50px;
+    background-color: rgba(255,255,255,0.25);
+    overflow: hidden;
+}
+
+#menu_boton{
+    position: absolute;
+    left: auto;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+    background-image: url("imagen/menu_cerrado.png");
+}
+
+#menu_elementos{
+    position: relative;
+    top: 50px;
+    /* border-top: solid 1px lightgrey; */
+}
+
+.menu_item{
+    width: 100%;
+    height: 50px;
+    border-bottom: solid 1px lightgrey;
+    border-top: 0px;
+}
+
+.menu_item:hover{
+    background-color: rgba(255,255,255,0.5);
+}
+
+.menu_item:active{
+    background-color: white;
+}
+
+.menu_item_icono{
+    position: absolute;
+    right: 0px;
+    left: auto;
+    width: 50px;
+    height: 50px;
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.menu_item_texto{
+    display: none;
+    position: absolute;
+    left: 10px;
+    right: auto;
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+#item_1{
+    background-image: url("imagen/search_Freepik.png");
+}
+
+#item_2{
+    background-image: url("imagen/blueprint_Smashicons.png");
+}
+
+#item_3{
+    background-image: url("imagen/amistad.png");
+}
+
+#item_4{
+    background-image: url("imagen/document.png");
+}
+
+#item_5{
+    background-image: url("imagen/chip.png");
+}
+
