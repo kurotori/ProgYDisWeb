@@ -1,13 +1,9 @@
 <?php
 
-    include "bdd/credenciales.php";
-
     function CrearConexion(){
         
-        $bdd = ObtenerCredenciales();
-
-        $conexion = new mysqli($bdd['servidor'], $bdd['usuario'], 
-                                $bdd['password'], $bdd['bdd']);
+        $conexion = new mysqli("localhost", "seba", 
+                                "las25sopas", "libreria");
 
         if( $conexion->connect_error ){
             die("ERROR: " . $conexion->connect_error);
@@ -27,7 +23,6 @@
         public $fecha_pub = "";
         public $ISBN = "";
     }
-
     
 
     function ObtenerLibrosJSON(){
@@ -78,6 +73,7 @@
             $DatosJSON=array("Resultado"=>"No se encontraron libros");
         }
 
+        $conexion->close();
         //6 - Creamos '$ResultadoJSON', un objeto para almacenar los datos
         // en formato JSON, convertimos el objeto de datos a JSON y almacenamos
         // los datos en el objeto '$ResultadoJSON'
