@@ -43,6 +43,7 @@ function MostrarJSON($datosEnJSON){
  * 1 - acceso
  * 2 - inicio de login
  * 3 - login autorizado
+ * Requieren 
  */
 function CrearToken($modo,$usuario=null){
     $token = new Token;
