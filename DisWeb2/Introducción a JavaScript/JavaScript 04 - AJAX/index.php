@@ -5,31 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="estilo.css">
     <script src="jquery-3.6.0.js"></script>
     <script src="eventos.js"></script>
 </head>
 <body>
-    <button onClick="ObtenerDatosConAJAX()">Prueba</button>
-
-    <div id="telon">
-        <div class="dialogo">
-            <div class="btnCerrar" onClick="MostrarDialogo()">x</div>
-            <div class="txtDialogo">
-                
-            </div>
-        </div>
-    </div>
-
-    <div id="resultado">
-        <table id="tabla_resultado">
-            <tr>
-                <th>ID</th>
-                <th>Número</th>
-                <th>Valor</th>
-            </tr>
-        </table>
-    </div>
-
+    <button onclick="ObtenerDatosConAJAX()">Obtener Datos</button>
+    <div id="mensajes"></div>
+    <table id="tabla_resultados">
+        <td>
+            <th>ID</th>
+            <th>Número</th>
+            <th>Valor</th>
+        </td>
+    </table>
 </body>
 </html>
