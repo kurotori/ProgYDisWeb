@@ -1,0 +1,38 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    padding: 0px;
+    background-color: aquamarine;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#formRegistro{
+    position:relative;
+    width: 80%;
+    height: 70%;
+    top: 15%;
+    left: 10%;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#formRegistro>label{
+    display: inline-block;
+    width: 25%;
+    font-weight: bold;
+    text-align: left;
+}
+
+#formRegistro>input{
+    width: 30%;
+}
+
+#formRegistro>input::after{
+    height: 5px;
+}
+
+.rojo{
+    color: red;
+}
