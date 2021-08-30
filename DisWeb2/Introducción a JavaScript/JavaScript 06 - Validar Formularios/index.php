@@ -41,8 +41,14 @@
         <input type="password" id="repPass" name="repPass" >
         <span class="rojo">*</span>
         <br><br>
-        <button>Registrarse</button>
+        
+        <!-- NOTA: Un botón con parámetro type con valor 'button', 
+        resulta inerte en el formulario y resulta útil para 
+        añadir funciones de JavaScript sobre el mismo -->
+        
+        <button type="button" onclick="ValidarFormulario('formRegistro')" >Registrarse</button>
 
     </form>
+    
 </body>
 </html>
