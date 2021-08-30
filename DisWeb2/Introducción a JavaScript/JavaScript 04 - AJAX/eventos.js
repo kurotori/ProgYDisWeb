@@ -25,7 +25,7 @@ function ObtenerDatosConAJAX() {
                     $("#tabla_resultado").append(
                         "<tr><td>"+elemento.id+"</td><td>"+elemento.numero+"</tr>"
                     );
-                });
+                }); 
 
                 
             },

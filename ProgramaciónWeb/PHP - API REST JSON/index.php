@@ -16,12 +16,12 @@
     <script src="eventos.js"></script>
 </head>
 <body>
-    <form action="registro/" method="post">
+    <form>
         <label for="nombre"></label>
         <input type="text" name="nombre" id="nombre">
         <label for="pass"></label>
         <input type="password" name="pass" id="pass">
-        <button>Registrarse</button>
     </form>
+    <button onclick="RecopilarYEnviar()">Registrarse</button>
 </body>
 </html>

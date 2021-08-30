@@ -26,5 +26,8 @@ function ValidarFormulario(idFormulario) {
        }
    );
 
+   var password = $("#pass").val();
+   
+
 }
 

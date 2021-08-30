@@ -34,7 +34,9 @@
         <label for="pass">Contraseña:</label>
         <input type="password" id="pass" name="pass">
         <span class="rojo">*</span>
-        <br><br>
+        <br>
+        <span class="error"></span>
+        <br>
         <label for="repPass">Repetir Contraseña:</label>
         <input type="password" id="repPass" name="repPass" >
         <span class="rojo">*</span>

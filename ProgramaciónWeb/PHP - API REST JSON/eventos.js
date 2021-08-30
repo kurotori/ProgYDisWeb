@@ -1,3 +1,16 @@
+var infoServidor = "";
+
+
+function RecopilarYEnviar(){
+    var nombre = $("#nombre").val();
+    var pass = $("#pass").val();
+    var hashPass = GenerarHash(pass);
+
+    EnviarFormulario(nombre,hashPass);
+}
+
+
+
 function EnviarFormulario(nombreUsuario, hashPass) {
     
     $.ajax(
@@ -18,6 +31,13 @@ function EnviarFormulario(nombreUsuario, hashPass) {
             success:function (data) {
                 //la variable 'data' representa a los datos que vienen del servidor
                 alert("Los datos se recibieron en el servidor");
+                
+                //Paso los datos recibidos a la variable global infoObtenida
+                infoObtenida = data;
+
+                alert(data.Respuesta.estado);
+                alert(data.Respuesta.mensaje);
+
             },
             //6 - Establecemos una función que se ejecuta en caso de error
             error:function(errorThrown){
