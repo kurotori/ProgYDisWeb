@@ -38,5 +38,17 @@ html, body{
 }
 
 .error{
+    border: 3px solid red;
+}
+
+.mensajeError{
+    display: none;
+    position: absolute;
+    right: 15px;
+    left: auto;
     border: 2px solid red;
+    background-color:red;
+    color: white;
+    font-size: small;
+
 }

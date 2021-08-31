@@ -30,24 +30,28 @@
         <label for="numCi">Cédula de Identidad:</label>
         <input type="text" name="numCi" id="numCi" maxlength=8>
         <span class="rojo">*</span>
-        <br><br>
+        <br>
+        <span id="errorCampos" class="mensajeError"></span>
+        <br>
         <label for="pass">Contraseña:</label>
         <input type="password" id="pass" name="pass">
         <span class="rojo">*</span>
         <br>
-        <span class="error"></span>
+        <span id="errorPass" class="mensajeError"></span>
         <br>
         <label for="repPass">Repetir Contraseña:</label>
         <input type="password" id="repPass" name="repPass" >
         <span class="rojo">*</span>
-        <br><br>
+        <br>
+        <span id="errorRepPass" class="mensajeError"></span>
+        <br>
         
         <!-- NOTA: Un botón con parámetro type con valor 'button', 
         resulta inerte en el formulario y resulta útil para 
         añadir funciones de JavaScript sobre el mismo -->
         
         <button type="button" onclick="ValidarFormulario('formRegistro')" >Registrarse</button>
-
+        <button type="button" onclick="ResetearFormulario('formRegistro')">Limpiar Formulario</button>
     </form>
     
 </body>
