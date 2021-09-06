@@ -9,12 +9,17 @@
         $password="";
         $bdd="registro";
 
-        $conexion = 
+        $conexion = new Conexion;
 
-        $conexion = new mysqli($servidor, $usuario, $password, $bdd);
+        $conexion->conexion = new mysqli($servidor, $usuario, $password, $bdd);
+        $conexion->estado = "OK";
+        $conexion->mensaje = "OK";
 
         if ($conexion->connect_error) {
-            die("ERROR: " . $conexion->connect_error);
+            $conexion->estado = "ERROR";
+            $conexion->mensaje = $conexion->$conexion->connect_error;
+            return $conexion;
+            exit(1);
         }
         return $conexion;
     }
