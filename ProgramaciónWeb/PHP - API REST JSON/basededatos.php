@@ -1,5 +1,6 @@
 <?php
 
+    include "clases.php";
 
 
     function CrearConexion(){
@@ -7,6 +8,8 @@
         $usuario="";
         $password="";
         $bdd="registro";
+
+        $conexion = 
 
         $conexion = new mysqli($servidor, $usuario, $password, $bdd);
 
@@ -65,9 +68,6 @@
                 "mensaje" => "El usuario $nombre se registró con éxito"
             );
         }
-    
-
-
         $sentencia->close();
         $conexion->close();
 

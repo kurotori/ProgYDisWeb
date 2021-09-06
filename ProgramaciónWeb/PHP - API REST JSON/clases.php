@@ -10,4 +10,10 @@
         public $mensaje="";
     }
 
+    class Conexion{
+        public $conexion;
+        public $estado;
+        public $mensaje;
+    }
+
 ?>
