@@ -4,8 +4,8 @@
 
     function CrearConexion(){
         $servidor="localhost";
-        $usuario="root";
-        $password="soloyoeh";
+        $usuario="";
+        $password="";
         $bdd="registro";
 
         $conexion = new mysqli($servidor, $usuario, $password, $bdd);
@@ -56,7 +56,7 @@
             //ERROR: No se pudo concretar el registro por errores con el servidor
             $resultado = array(
                 "estado" => "ERROR",
-                "mensaje" => "No se pudo realizar el registro"
+                "mensaje" => $conexion->error
             );
         }
         else {
