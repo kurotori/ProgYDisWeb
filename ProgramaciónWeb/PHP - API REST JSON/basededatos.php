@@ -1,7 +1,11 @@
 <?php
 
-    include "clases.php";
-
+    
+    class BaseDeDatos{
+        public $conexion;
+        public $estado;
+        public $mensaje;
+    }
 
     function CrearConexion(){
         $servidor="localhost";
@@ -9,27 +13,27 @@
         $password="";
         $bdd="registro";
 
-        $conexion = new Conexion;
+        $basededatos = new BaseDeDatos;
 
-        $conexion->conexion = new mysqli($servidor, $usuario, $password, $bdd);
-        $conexion->estado = "OK";
-        $conexion->mensaje = "OK";
+        $basededatos->conexion = new mysqli($servidor, $usuario, $password, $bdd);
+        $basededatos->estado = "OK";
+        $basededatos->mensaje = "OK";
 
-        if ($conexion->connect_error) {
-            $conexion->estado = "ERROR";
-            $conexion->mensaje = $conexion->$conexion->connect_error;
-            return $conexion;
+        if ($basededatos->conexion->connect_error) {
+            $basededatos->estado = "ERROR";
+            $basededatos->mensaje = $basededatos->$conexion->connect_error;
+            return $basededatos;
             exit(1);
         }
-        return $conexion;
+        return $basededatos;
     }
 
 
     function UsuarioYaExiste($usuario){
-        $conexion = CrearConexion();
+        $basededatos = CrearConexion();
         $consulta = "SELECT count(*) as 'conteo' from usuario WHERE nombre = '".$usuario."'";
         
-        $respuesta = $conexion->query($consulta);
+        $respuesta = $basededatos->conexion->query($consulta);
 
         $cant=0;
         $resultado = false;
@@ -43,19 +47,22 @@
                 }
             }
         }
-        $conexion->close();
+        $basededatos->conexion->close();
 
         return $resultado;        
     }
 
 
     function RegistrarUsuario($nombre, $passHash, $passToken){
-        $conexion = CrearConexion();
+        $basededatos = CrearConexion();
 
         $resultado = array();
 
-        $sentencia = $conexion->prepare("INSERT INTO usuario(nombre,passHash,passToken) values (?,?,?)");
+        $consulta = "INSERT INTO usuario(nombre,passHash,passToken) values (?,?,?)";
+
+        $sentencia = $basededatos->conexion->prepare($consulta);
         $sentencia->bind_param("sss", $nomUsuario, $pHash, $pToken);
+
         $nomUsuario = $nombre;
         $pHash = $passHash;
         $pToken = $passToken;
@@ -63,8 +70,8 @@
         if ( !( $sentencia->execute() ) ) {
             //ERROR: No se pudo concretar el registro por errores con el servidor
             $resultado = array(
-                "estado" => "ERROR",
-                "mensaje" => $conexion->error
+                "estado" => $basededatos->estado,
+                "mensaje" => $basededatos->mensaje
             );
         }
         else {
@@ -78,34 +85,6 @@
 
         return $resultado;
 
-    }
-
-
-    function obtenerLibrosEnTabla(){
-        $conexion = CrearConexion();
-        $consulta = "SELECT titulo,genero,fecha_pub,ISBN from libro order by genero,titulo";
-
-        $resultado = $conexion->query($consulta);
-        
-        $tabla="";
-
-        if($resultado->num_rows > 0){
-            while( $fila = $resultado->fetch_assoc() ){
-                $tabla = $tabla . "<tr>";
-                $tabla = $tabla . "<td>" . $fila["titulo"] . "</td>";
-                $tabla = $tabla . "<td>" . $fila["genero"] . "</td>";
-                $tabla = $tabla . "<td>" . $fila["fecha_pub"] . "</td>";
-                $tabla = $tabla . "<td>" . $fila["ISBN"] . "</td>";
-                $tabla = $tabla . "</tr>";
-            }
-        }
-        else{
-            $tabla = "<tr><td colspan='4'>No se encontraron libros en la Base de Datos</td></tr>";
-        }
-
-        $conexion->close();
-
-        return $tabla;
     }
 
 ?>
