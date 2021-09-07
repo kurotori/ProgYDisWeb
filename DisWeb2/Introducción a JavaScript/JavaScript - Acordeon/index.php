@@ -12,9 +12,13 @@
 <body>
     
     <div id="contenedor">
-        <div class="boton" id="boton1" onclick="ActivarBoton(this)"></div>
+        <div class="boton" id="boton1" onclick="ActivarBoton(this)">
+            <span>Botón 01</span>
+        </div>
         <div class="contenido" id="contenido1"></div>
-        <div class="boton" id="boton2" onclick="ActivarBoton(this)"></div>
+        <div class="boton" id="boton2" onclick="ActivarBoton(this)">
+            <span>Botón 02</span>
+        </div>
         <div class="contenido" id="contenido2"></div>
     </div>
 

@@ -16,14 +16,26 @@ html,body{
 }
 
 .boton{
-    height: 10%;
+    height: 10vh;
     width: 100%;
     background-color: darkcyan;
     border-bottom: 2px solid darkblue;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.boton span{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    font-size: 6vh;
+    text-align: center;
+    top: 2vh;
 }
 
 .boton:hover{
     background-color: cyan;
+    color: black;
 }
 
 .boton:active{
@@ -33,5 +45,6 @@ html,body{
 .contenido{
     height: 0px;
     width: 100%;
+    background-color: aquamarine;
 }
 
