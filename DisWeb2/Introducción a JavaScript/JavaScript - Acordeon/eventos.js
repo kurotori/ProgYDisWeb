@@ -46,3 +46,11 @@ function ActivarBoton(idBoton) {
         }
     );
 }
+
+function AgregarBoton(textoBoton,contenedor) {
+    var contenido = document.getElementById(contenedor).innerHTML;
+    var span = "<span>"+textoBoton+"</span>";
+    var boton = "<div class='boton' onclick='ActivarBoton(this)'>"+
+                span+"</div><div class='contenido'></div>";
+    document.getElementById(contenedor).innerHTML += boton;
+}
