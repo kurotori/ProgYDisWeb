@@ -1,13 +1,13 @@
 <?php
 
-    class Usuario{
-        public $nombre="";
-        public $hash="";
-    }
-
     class Respuesta{
         public $estado="";
         public $mensaje="";
+    }
+
+    class Usuario{
+        public $nombre="";
+        public $hash="";
     }
 
 ?>
