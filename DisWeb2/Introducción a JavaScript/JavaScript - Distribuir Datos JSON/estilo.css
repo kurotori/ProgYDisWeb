@@ -1,0 +1,68 @@
+html,body{
+    margin: 0px;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: slategrey;
+}
+
+h1{
+    padding: 0px;
+    margin: 0px;
+
+}
+
+#marco{
+    position: relative;
+    left: 7.5%;
+    top: 1%;
+    width: 85%;
+    height: 98%;
+    border: 1px solid white;
+}
+
+#titulo{
+    width: 100%;
+    text-align: center;
+}
+
+#contenido{
+    width: 100%;
+    height: 85%;
+    border: 1px solid white;
+    overflow-y: scroll;
+}
+
+.elemento{
+    position: relative;
+    width: 95%;
+    height: 150px;
+    left: 2.5%;
+    border: 1px solid white;
+}
+
+.elemento_datos{
+    width: calc(100% - 150px);
+    height: 100%;
+    background-color: white;
+    float: left;
+}
+
+.elemento_imagen{
+    width: 150px;
+    height: 100%;
+    background-color: tomato;
+    float: left;
+}
+
+.datos_principales{
+    width: 100%;
+    height: 25%;
+    background-color: springgreen;
+}
+
+.datos_secundarios{
+    width: 100%;
+    height: 75%;
+    background-color: steelblue;
+}
