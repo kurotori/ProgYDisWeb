@@ -6,10 +6,9 @@ html,body{
     background-color: slategrey;
 }
 
-h1{
-    padding: 0px;
+#marco h1{
+   padding: 0px;
     margin: 0px;
-
 }
 
 #marco{
@@ -35,6 +34,7 @@ h1{
 
 .elemento{
     position: relative;
+    margin-top: 5px;
     width: 95%;
     height: 150px;
     left: 2.5%;

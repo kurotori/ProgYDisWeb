@@ -16,14 +16,18 @@
             <h1>Contenido</h1>
         </div>
         <div id="contenido">
+
             <div class="elemento">
+
                 <div class="elemento_datos">
                     <div class="datos_principales"></div>
                     <div class="datos_secundarios"></div>
                 </div>
+                
                 <div class="elemento_imagen">
                 </div>
             </div>
+
         </div>
     </div>
 </body>
