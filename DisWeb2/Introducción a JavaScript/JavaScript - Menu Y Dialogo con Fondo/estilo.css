@@ -1,0 +1,76 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background-color: aqua;
+    background-image: url(Starter5.jpg);
+    background-size: cover;
+}
+
+#fondo{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.75);
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 10;
+}
+
+#dialogo{
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    left: 37.5%;
+    top:37.5%;
+    background-color: white;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 500ms;
+    z-index: 11;
+}
+
+#dialogo button{
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    left: 37.5%;
+    top: 70%;
+}
+
+#menu{
+    position: fixed;
+    width: 50px;
+    height: 100%;
+    background-color: white;
+    border-left: solid 3px darkblue;
+    transition: width 500ms;
+    transition-timing-function: ease-out;
+    z-index: 11;
+}
+
+#menu .icono{
+    position: absolute;
+    left: auto;
+    top: 2px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+}
+
+#menu .icono input[type="checkbox"]{
+    display: none;
+}
+
+#menu .icono #icono_menu ~ div{
+    width: 45px;
+    height: 45px;
+    background-image: url(menu_cerrado.png);
+    background-size: contain;
+    transition: background-image 500ms;
+    cursor: pointer;
+}
+
+#menu .icono #icono_menu:checked ~ div{
+    background-image: url(menu_abierto.png);
+}
