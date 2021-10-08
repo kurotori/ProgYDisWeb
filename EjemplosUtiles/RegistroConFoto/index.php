@@ -10,8 +10,9 @@
     <h1>Registro</h1>
     <div id="vistaPrevia"></div>
     <p>Elija un archivo de imágen</p>
-    <input type="file" name="" id="archivoImagen" accept="image/png, image/gif, image/jpeg">
+    <input type="file" name="" id="archivoImagen" accept="image/png, image/gif, image/jpeg" multiple>
     <br>
     <button id="btnImagen">Añadir Imágen</button>
 </body>
+<script src="eventos.js"></script>
 </html>

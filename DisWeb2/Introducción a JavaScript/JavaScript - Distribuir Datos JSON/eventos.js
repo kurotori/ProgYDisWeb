@@ -45,8 +45,8 @@ function DistribuirDatosMejor(datos) {
             var datosPrincipales = elemento.nombre + " " + elemento.apellido;
 
             var datosSecundarios = elemento.direccion + 
-                                ", " + elemento.ciudad +
-                                " - " + elemento.telefono;
+                                "<br>" + elemento.ciudad +
+                                "<br>" + elemento.telefono;
         
             var colorImagen =  elemento.colorR + "," + 
                             elemento.colorG + "," + 
