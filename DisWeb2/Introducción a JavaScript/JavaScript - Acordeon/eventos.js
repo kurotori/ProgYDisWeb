@@ -18,15 +18,27 @@ function ObtenerEspacioLibre(elemento) {
 
 function ActivarBoton(idBoton) {
     //Obtenemos todos los elementos del div contenedor
-    var elementos = idBoton.parentElement.children;
+    let elementos = idBoton.parentElement.children;
+
+    //Transformamos la HTMLCollection en un array
+    elementos = Array.from(elementos);
 
     //Creamos un bucle sobre ellos con .each
-    $(elementos).each(
+    elementos.forEach(elemento => {
+        var clases = elemento.classList;
+        if ( clases.contains("contenido") ) {
+            elemento.style.height = "0px"
+        }
+    });
+    
+    
+    
+/*     $(elementos).each(
         //Esta función colapsa todos los div con la clase 'contenido'
         function () {
             //Para cada elemento, obtenemos su lista de clases
             var clases = this.classList;
-            //Si en esa clase encontramos la clase 'contenido'...
+            //Si en esa lista encontramos la clase 'contenido'...
             if ( clases.contains("contenido") ) {
                 //...colapsamos su altura
                 $(this).animate(
@@ -36,15 +48,17 @@ function ActivarBoton(idBoton) {
                 );
             } 
         }
-    );
+    ); */
     var alturaMax = ObtenerEspacioLibre(idBoton.parentElement.id);
 
     var divContenido = idBoton.nextElementSibling;
-    $(divContenido).animate(
+    divContenido.style.height = alturaMax+"px";
+
+    /*$(divContenido).animate(
         {
             height:alturaMax+"px"
         }
-    );
+    );*/
 }
 
 function AgregarBoton(textoBoton,contenedor) {

@@ -46,5 +46,6 @@ html,body{
     height: 0px;
     width: 100%;
     background-color: aquamarine;
+    transition: height 500ms;
 }
 
