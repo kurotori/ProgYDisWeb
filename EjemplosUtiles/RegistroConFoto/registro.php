@@ -118,20 +118,25 @@ function CrearConexion(){
      */
     function ObtenerListadoPublicaciones(){
         $basededatos = CrearConexion();
-        $consulta = "SELECT id, titulo, descripcion, fecha from publicacion order by fecha DESC";
-        
         $resultado = new Resultado;
-        
-        $respuesta = $basededatos->conexion->query($consulta);
 
-        if ($respuesta->num_rows > 0) {
-            $resultado->estado = "OK";
-            $resultado->datos = array();
-            while ($fila = $respuesta->fetch_assoc()) {
-                $publicacion = new Publicacion;
-            }
+        if ($basededatos->estado == "ERROR") {
+            $resultado->estado = "ERROR";
+            $resultado->datos = $basededatos->mensaje;
         }
+        else {
+            $consulta = "SELECT id, titulo, descripcion, fecha from publicacion order by fecha DESC";
+            $respuesta = $basededatos->conexion->query($consulta);
 
+            if ($respuesta->num_rows > 0) {
+                $resultado->estado = "OK";
+                $resultado->datos = array();
+                while ($fila = $respuesta->fetch_assoc()) {
+                    $publicacion = new Publicacion;
+                }
+            }
+   
+        }
     }
 
 
