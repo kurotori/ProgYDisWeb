@@ -8,7 +8,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 /* Zona de Ejecución */
 $info = new Resultado;
 $info->estado = "";
-$info->mensaje="";
+$info->datos= "";
 
 if ($_POST) {
     if (isset($_POST['modo']) ) {
@@ -24,7 +24,11 @@ if ($_POST) {
             case '2':
                 $info = ObtenerListadoPublicaciones();
                 break;
-            
+            case '3':
+                //Modo 3: Subir una imagen
+                $info=SubirImagen();
+                # code...
+                break;
             default:
                 # code...
                 break;
@@ -161,17 +165,21 @@ function CrearConexion(){
     }
 
     /**
-     * Permite convertir datos de imágen en base64 a un archivo en el servidor
+     * Permite convertir datos de imágen en base64 a un archivo en el servidor.
+     * Devuelve la ruta completa a la imágen en el servidor
      */
-    function DatosAImagen($datos_base64, $ruta, $archivo_imagen) {
-        $archivo = fopen($ruta.'/'.$archivo_imagen, "wb");
-    
+    function DatosAImagen($datos_base64, $ruta, $id_imagen) {
         $datos_puros = explode(',', $datos_base64);
+        $extension = explode('/', explode(';', $datos_puros[0])[0])[1];
+
+        $ruta_completa = $ruta.'/'.$id_imagen.'.'.$extension;
+
+        $archivo = fopen($ruta_completa, "wb");
     
         fwrite($archivo, base64_decode($datos_puros[1]));
         fclose($archivo);
     
-        //return $output_file;
+        return $ruta_completa;
     }
 
 
@@ -213,6 +221,8 @@ function CrearConexion(){
                 $resultado->datos = "No se encontraron registros";
             }
         }
+
+        $basededatos->conexion->close();
         return $resultado;
     }
 
@@ -240,7 +250,9 @@ function CrearConexion(){
             $resultado->estado = "ERROR";
             $resultado->datos = "No se pudo realizar la publicación";
         }
-    return $resultado;
+
+        $basededatos->conexion->close();
+        return $resultado;
     }
 
     /**
@@ -265,27 +277,62 @@ function CrearConexion(){
                 $resultado=true;
             }
         }
+
+        $basededatos->conexion->close();
         return $resultado;
     }
 
+    /**
+     * Permite subir una imágen al servidor y registrarla en la BdD.
+     * Devuelve un objeto de clase Resultado con la ID de la imágen
+     */
+    function SubirImagen(){
+        $resultado = new Resultado;
+        $basededatos = CrearConexion();
 
+        $consulta = "INSERT INTO imagen() values()";
+        $respuesta = $basededatos->conexion->query($consulta);
+        $imagenId = $basededatos->conexion->insert_id;
+        
+        $datosImagen = $_POST['datosImagen'];
+        $ruta = DatosAImagen($datosImagen,"imagenes",$imagenId);
+
+        $consulta2 = "UPDATE imagen set ruta=? where id=?";
+        $sentencia = $basededatos->conexion->prepare($consulta2);
+        $sentencia->bind_param("si",$ruta,$imagenId);
+        $sentencia->execute();
+
+        
+        
+        $resultado->estado = $basededatos->estado;
+        $resultado->datos = "*".$ruta." ".$imagenId." ".$basededatos->mensaje;
+        
+        $basededatos->conexion->close();
+        return $resultado;
+    }
 
     /**
      * Permite agregar una imágen a una publicación existente.
      * Devuelve un objeto de clase Resultado
      */
-    function AgregarImagenAPublicacion($id_publicacion){
+    function AgregarImagenAPublicacion($id_publicacion, $id_imagen){
         $resultado =  new Resultado;
         if ( PublicacionExiste($id_publicacion) ) {
             
             $basededatos = CrearConexion();
-            $consulta="";
-
+            $consulta="INSERT into tiene(publicacion_id, imagen_id) values (?,?)";
+            $sentencia = $basededatos->conexion->prepare($consulta);
+            $sentencia->bind_param("ii",$id_publicacion,$id_imagen);
+            $sentencia->execute();
+            
+            $basededatos->conexion->close();
         }
         else{
             $resultado->estado = "ERROR";
             $resultado->datos = "No se pudo agregar la imágen";
         }
+
+        
         return $resultado;
     }
 

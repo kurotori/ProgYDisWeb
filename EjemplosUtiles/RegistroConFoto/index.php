@@ -29,5 +29,6 @@
         </form>
     </div>
 </body>
+<script src="jquery-3.6.0.js"></script>
 <script src="eventos.js"></script>
 </html>

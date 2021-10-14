@@ -16,7 +16,7 @@ create table publicacion(
 
 create table imagen(
     id int not null unique auto_increment primary key,
-    ruta varchar(50) not null
+    ruta varchar(50)
 );
 
 create table usa(

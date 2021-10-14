@@ -2,7 +2,7 @@ const archivoImagen = document.getElementById('archivoImagen');
 const divVistaPrevia = document.getElementById('vistaPrevia');
 
 let listaDeFotos = [];
-
+var algo;
 
 archivoImagen.addEventListener('change',archivosAgregados);
 
@@ -70,4 +70,34 @@ function ListarArchivos(inputOrigen) {
         //CargarDatosDeImagen(element).then( (datos)=> console.log(datos) );
        
     });
+}
+
+function SubirImagen(datosImagen) {
+    $.ajax(
+        {
+            //1 - Indicar la URL de donde se obtienen los datos
+            url:"registro.php",
+            //2 - Método para el envío de los datos, puede ser 'GET' o 'POST'
+            method: "POST",
+            //3 - Indicar la forma que tendran los datos, en este caso es 'json'
+            datatype: "json",
+            //4 - Indicar los datos que se incluirán. 
+            // Primero se indica el nombre del dato esperado por la página y luego el dato
+            data:{
+                modo : 3,
+                datosImagen : datosImagen
+            },
+            //5 - Establecemos una función que se ejecuta en caso de éxito en la operación
+            success:function (datos) {
+                console.log("Estado:" + datos.estado);
+                console.log("Datos:" + datos.datos);
+                algo=datos;
+                //la variable 'data' representa a los datos que vienen del servidor
+            },
+            //6 - Establecemos una función que se ejecuta en caso de error
+            error:function(errorThrown){
+                console.error(errorThrown.responseText);
+            }
+        }
+    );
 }
