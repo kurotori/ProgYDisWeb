@@ -19,6 +19,15 @@
     <div id="vistaPrevia">
 
     </div>
+
+    <div>
+        <form action="registro.php" method="post">
+            <input type="text" name="titulo" id="titulo">
+            <input type="text" name="descripcion" id="descripcion">
+            <input type="hidden" name="modo" value="1">
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
 </body>
 <script src="eventos.js"></script>
 </html>

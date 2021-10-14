@@ -2,6 +2,42 @@
 
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+
+
+/* Zona de Ejecución */
+$info = new Resultado;
+$info->estado = "";
+$info->mensaje="";
+
+if ($_POST) {
+    if (isset($_POST['modo']) ) {
+        
+        $modo = ValidarDatos($_POST['modo']);
+
+        switch ($modo) {
+            //Modo 1: Registro de Publicaciones
+            case '1':
+                $info = NuevaPublicacion();
+                break;
+            //Modo 2: Listado de Publicaciones
+            case '2':
+                $info = ObtenerListadoPublicaciones();
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+}
+
+$json = TransformarEnJSON($info);
+MostrarJSON($json);
+
+/* ----------------------------- */
+
+/* CLASES */
     
 /**
  * Clase para contener una conexión a la base de datos.
@@ -68,6 +104,17 @@ function CrearConexion(){
     return $basededatos;
 }
 
+    /**
+     * Valida y limpia datos de ingreso para evitar ataques de inyecciones SQL
+     * @param datos Los datos de ingreso que se quieren limpiar.
+     */
+    function ValidarDatos($datos){
+        $datos = trim($datos);
+        $datos = stripslashes($datos);
+        $datos = htmlspecialchars($datos);
+        return $datos;
+    }
+
 
  /**
      * Transforma un objeto en una secuencia JSON para
@@ -114,12 +161,30 @@ function CrearConexion(){
     }
 
     /**
+     * Permite convertir datos de imágen en base64 a un archivo en el servidor
+     */
+    function DatosAImagen($datos_base64, $ruta, $archivo_imagen) {
+        $archivo = fopen($ruta.'/'.$archivo_imagen, "wb");
+    
+        $datos_puros = explode(',', $datos_base64);
+    
+        fwrite($archivo, base64_decode($datos_puros[1]));
+        fclose($archivo);
+    
+        //return $output_file;
+    }
+
+
+    /** Funciones de manejo de publicaciones */
+
+    /**
      * Permite obtener el listado de publicaciones almacenadas en el servidor
      */
     function ObtenerListadoPublicaciones(){
         $basededatos = CrearConexion();
         $resultado = new Resultado;
 
+        //Chequeamos posibles errores en la conexión a la BdD
         if ($basededatos->estado == "ERROR") {
             $resultado->estado = "ERROR";
             $resultado->datos = $basededatos->mensaje;
@@ -133,11 +198,87 @@ function CrearConexion(){
                 $resultado->datos = array();
                 while ($fila = $respuesta->fetch_assoc()) {
                     $publicacion = new Publicacion;
+                    $publicacion->id = $fila['id'];
+                    $publicacion->titulo = $fila['titulo'];
+                    $publicacion->fecha = $fila['fecha'];
+                    $publicacion->descripcion = $fila['descripcion'];
+                    //Esta función no obtiene las imágenes.
+                    $publicacion->imagenes = "";
+
+                    array_push($resultado->datos,$publicacion);
                 }
             }
-   
+            else {
+                $resultado->estado = "OK";
+                $resultado->datos = "No se encontraron registros";
+            }
         }
+        return $resultado;
     }
+
+    /**
+     * Registra una nueva publicación en la base de datos
+     */
+    function NuevaPublicacion(){
+        $resultado = new Resultado;
+        $basededatos = CrearConexion();
+
+        $titulo = ValidarDatos($_POST['titulo']);
+        $descripcion = ValidarDatos($_POST['descripcion']);
+
+        $consulta = "INSERT into publicacion(titulo,descripcion) values (?,?)";
+        $sentencia = $basededatos->conexion->prepare($consulta);
+        $sentencia->bind_param("ss",$titulo,$descripcion);
+        $sentencia->execute();
+        $respuesta = $basededatos->conexion->insert_id;
+
+        if ($respuesta>0) {
+            $resultado->estado = "OK";
+            $resultado->datos = $respuesta;//"La publicación '$titulo' se ha agregado con éxito con la ID $respuesta";
+        }
+        else {
+            $resultado->estado = "ERROR";
+            $resultado->datos = "No se pudo realizar la publicación";
+        }
+    return $resultado;
+    }
+
+    /**
+     * Permite verificar que una publicación exista en la BdD.
+     * Si existe, devuelve TRUE, de lo contrario, devuelve FALSE.
+     */
+    function PublicacionExiste($id_publicacion){
+        $resultado = false;
+
+        $id = intval(ValidarDatos($id_publicacion));
+        $basededatos = CrearConexion();
+
+        $consulta = "SELECT count(*) from publicacion WHERE id=?";
+        $sentencia = $basededatos->conexion->prepare($consulta);
+        $sentencia->bind_param("i",$id);
+        $sentencia->execute();
+        $respuesta = $sentencia->get_result();
+
+        if ($respuesta->num_rows == 1) {
+
+        }
+
+
+
+        return $resultado;
+    }
+
+
+
+    /**
+     * Permite agregar una imágen a una publicación existente.
+     * Devuelve un objeto de clase Resultado
+     */
+    function AgregarImagenAPublicacion($id_publicacion){
+
+    }
+
+
 
 
 ?>
