@@ -253,18 +253,18 @@ function CrearConexion(){
         $id = intval(ValidarDatos($id_publicacion));
         $basededatos = CrearConexion();
 
-        $consulta = "SELECT count(*) from publicacion WHERE id=?";
+        $consulta = "SELECT count(*) as conteo from publicacion WHERE id=?";
         $sentencia = $basededatos->conexion->prepare($consulta);
         $sentencia->bind_param("i",$id);
         $sentencia->execute();
         $respuesta = $sentencia->get_result();
 
         if ($respuesta->num_rows == 1) {
-
+            $fila = $respuesta->fetch_assoc();
+            if ($fila['conteo'] == 1) {
+                $resultado=true;
+            }
         }
-
-
-
         return $resultado;
     }
 
@@ -275,7 +275,18 @@ function CrearConexion(){
      * Devuelve un objeto de clase Resultado
      */
     function AgregarImagenAPublicacion($id_publicacion){
+        $resultado =  new Resultado;
+        if ( PublicacionExiste($id_publicacion) ) {
+            
+            $basededatos = CrearConexion();
+            $consulta="";
 
+        }
+        else{
+            $resultado->estado = "ERROR";
+            $resultado->datos = "No se pudo agregar la imágen";
+        }
+        return $resultado;
     }
 
 
