@@ -174,8 +174,10 @@ function CrearConexion(){
 
         $ruta_completa = $ruta.'/'.$id_imagen.'.'.$extension;
 
-        $archivo = fopen($ruta_completa, "wb");
-    
+        $archivo = fopen($ruta_completa, "w");
+        
+        echo($archivo);
+
         fwrite($archivo, base64_decode($datos_puros[1]));
         fclose($archivo);
     
@@ -291,7 +293,7 @@ function CrearConexion(){
         $basededatos = CrearConexion();
 
         $consulta = "INSERT INTO imagen() values()";
-        $respuesta = $basededatos->conexion->query($consulta);
+        $basededatos->conexion->query($consulta);
         $imagenId = $basededatos->conexion->insert_id;
         
         $datosImagen = $_POST['datosImagen'];
