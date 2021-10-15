@@ -8,26 +8,28 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <h1>Registro</h1>
-    <div id="controles">
-        <p>Elija un archivo de imágen</p>
-        <input type="file" name="" id="archivoImagen" accept="image/png, image/gif, image/jpeg" multiple>
+    <h1 id="hTitulo">Nueva Publicación</h1>
+    <div id="nuevaPub" class="bordes">
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" id="titulo">
         <br>
-        <button id="btnImagen" onclick="ListarArchivos(archivoImagen)">Añadir Imágen</button>
+        <label for="descripcion">Descripción</label>
+        <input type="text" name="descripcion" id="descripcion">
+    
+        
     </div>
     
-    <div id="vistaPrevia">
-
+    <div id="pubImagenes" class="bordes">
+        <label for="archivoImagen">Seleccione Imágenes:</label>
+        <br><br>
+        <input type="file" name="archivoImagen" id="archivoImagen" accept="image/png, image/gif, image/jpeg" multiple>
+        <br><br>
+        <div id="vistaPrevia" class="bordes" >
+        </div>
     </div>
-
-    <div>
-        <form action="registro.php" method="post">
-            <input type="text" name="titulo" id="titulo">
-            <input type="text" name="descripcion" id="descripcion">
-            <input type="hidden" name="modo" value="1">
-            <input type="submit" value="Enviar">
-        </form>
-    </div>
+    
+    <button id="btnSubir">Publicar</button>
+    
 </body>
 <script src="jquery-3.6.0.js"></script>
 <script src="eventos.js"></script>

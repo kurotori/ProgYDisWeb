@@ -29,6 +29,10 @@ if ($_POST) {
                 $info=SubirImagen();
                 # code...
                 break;
+            case '4':
+                # Modo 4: Asociar una imagen a una publicación
+                //$info = 
+                break;
             default:
                 # code...
                 break;
@@ -307,7 +311,7 @@ function CrearConexion(){
         
         
         $resultado->estado = $basededatos->estado;
-        $resultado->datos = "*".$ruta." ".$imagenId." ".$basededatos->mensaje;
+        $resultado->datos = $imagenId;
         
         $basededatos->conexion->close();
         return $resultado;
@@ -317,7 +321,9 @@ function CrearConexion(){
      * Permite agregar una imágen a una publicación existente.
      * Devuelve un objeto de clase Resultado
      */
-    function AgregarImagenAPublicacion($id_publicacion, $id_imagen){
+    function AgregarImagenAPublicacion(){ //$id_publicacion, $id_imagen){
+        $id_publicacion = ValidarDatos($_POST['id_publicacion']);
+        $id_imagen = ValidarDatos($_POST['id_imagen']);
         $resultado =  new Resultado;
         if ( PublicacionExiste($id_publicacion) ) {
             
@@ -327,13 +333,15 @@ function CrearConexion(){
             $sentencia->bind_param("ii",$id_publicacion,$id_imagen);
             $sentencia->execute();
             
+            $resultado->estado="OK";
+            $resultado->datos="OK";
+
             $basededatos->conexion->close();
         }
         else{
             $resultado->estado = "ERROR";
             $resultado->datos = "No se pudo agregar la imágen";
         }
-
         
         return $resultado;
     }
