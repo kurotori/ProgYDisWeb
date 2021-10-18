@@ -78,7 +78,7 @@ function CargarVistaPrevia(imagen) {
     
 }
 
-function SubirImagen(datosImg) {
+function SubirImagen(datosImg, idPublicacion) {
     $.ajax(
         {
             //1 - Indicar la URL de donde se obtienen los datos
@@ -91,7 +91,8 @@ function SubirImagen(datosImg) {
             // Primero se indica el nombre del dato esperado por la página y luego el dato
             data:{
                 'modo' : 3,
-                'datosImagen' : datosImg
+                'datosImagen' : datosImg,
+                'idPublicacion' : idPublicacion
             },
             //5 - Establecemos una función que se ejecuta en caso de éxito en la operación
             success:function (datos) {
@@ -109,6 +110,10 @@ function SubirImagen(datosImg) {
 }
 
 
+
+/**
+ * Permite subir una publicación y las imágenes asociadas a la misma.
+ */
 function SubirPublicacion() {
     let tituloPub = inputTitulo.value;
     let descripcionPub = inputDescripcion.value;
@@ -116,7 +121,7 @@ function SubirPublicacion() {
     $.ajax(
         {
             //1 - Indicar la URL de donde se obtienen los datos
-            url:"registro.php",
+            url:"nueva_publicacion.php",
             //2 - Método para el envío de los datos, puede ser 'GET' o 'POST'
             method: "POST",
             //3 - Indicar la forma que tendran los datos, en este caso es 'json'
@@ -124,8 +129,9 @@ function SubirPublicacion() {
             //4 - Indicar los datos que se incluirán. 
             // Primero se indica el nombre del dato esperado por la página y luego el dato
             data:{
-                modo : 3,
-                datosImagen : datosImagen
+                'modo' : 3,
+                'tituloPub' : tituloPub,
+                'descripcionPub' : descripcionPub
             },
             //5 - Establecemos una función que se ejecuta en caso de éxito en la operación
             success:function (datos) {

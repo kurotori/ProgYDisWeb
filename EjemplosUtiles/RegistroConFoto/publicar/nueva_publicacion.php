@@ -324,6 +324,15 @@ function CrearConexion(){
             $sentencia->bind_param("ss",$ruta->datos,$imagenId);
             $sentencia->execute();
 
+            $resultado2 = AgregarImagenAPublicacion($imagenId);
+
+            if ($resultado2->estado == "ERROR") {
+                
+            } else {
+                
+            }
+            
+
             $resultado->estado = $imagenId;
             $resultado->datos = "OK";
         }
@@ -336,9 +345,9 @@ function CrearConexion(){
      * Permite agregar una imágen a una publicación existente.
      * Devuelve un objeto de clase Resultado
      */
-    function AgregarImagenAPublicacion(){ //$id_publicacion, $id_imagen){
-        $id_publicacion = ValidarDatos($_POST['id_publicacion']);
-        $id_imagen = ValidarDatos($_POST['id_imagen']);
+    function AgregarImagenAPublicacion($idImagen){ //$id_publicacion, $id_imagen){
+        $id_publicacion = ValidarDatos($_POST['idPublicacion']);
+        //$id_imagen = ValidarDatos($_POST['idImagen']);
         $resultado =  new Resultado;
 
         if ( PublicacionExiste($id_publicacion) ) {
@@ -346,7 +355,7 @@ function CrearConexion(){
             $basededatos = CrearConexion();
             $consulta="INSERT into tiene(publicacion_id, imagen_id) values (?,?)";
             $sentencia = $basededatos->conexion->prepare($consulta);
-            $sentencia->bind_param("ii",$id_publicacion,$id_imagen);
+            $sentencia->bind_param("ii", $idPublicacion, $idImagen);
             $sentencia->execute();
             
             $resultado->estado="OK";
