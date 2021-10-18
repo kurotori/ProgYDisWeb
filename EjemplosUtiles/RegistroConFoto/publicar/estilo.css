@@ -20,6 +20,17 @@ html, body{
     left: 10%;
 }
 
+#nuevaPub label{
+    display: inline-block;
+    width: 15%;
+}
+
+#nuevaPub input[type=text] {
+    display: inline-block;
+    width: 80%;
+}
+
+
 #vistaPrevia{
     position: relative;
     width: 95%;

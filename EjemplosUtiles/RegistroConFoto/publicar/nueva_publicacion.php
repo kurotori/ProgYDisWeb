@@ -170,22 +170,30 @@ function CrearConexion(){
 
     /**
      * Permite convertir datos de imágen en base64 a un archivo en el servidor.
-     * Devuelve la ruta completa a la imágen en el servidor
+     * Devuelve un objeto de clase Resultado o la ruta completa a la imágen en el servidor 
+     * o False en caso de error
      */
     function DatosAImagen($datos_base64, $ruta, $id_imagen) {
+        $resultado = new Resultado;
+
         $datos_puros = explode(',', $datos_base64);
         $extension = explode('/', explode(';', $datos_puros[0])[0])[1];
 
         $ruta_completa = $ruta.'/'.$id_imagen.'.'.$extension;
 
         $archivo = fopen($ruta_completa, "w");
-        
-        echo($archivo);
 
-        fwrite($archivo, base64_decode($datos_puros[1]));
-        fclose($archivo);
-    
-        return $ruta_completa;
+        if ($archivo) {
+            fwrite($archivo, base64_decode($datos_puros[1]));
+            fclose($archivo);
+            $resultado->estado = "OK";
+            $resultado->datos = $ruta_completa;
+        } else {
+            $resultado->estado = "ERROR";
+            $error = error_get_last();
+            $resultado->datos = $error['message']." Archivo: ".$error['file']." Línea:".$error['line'];
+        }
+        return $resultado;
     }
 
 
@@ -200,7 +208,7 @@ function CrearConexion(){
 
         //Chequeamos posibles errores en la conexión a la BdD
         if ($basededatos->estado == "ERROR") {
-            $resultado->estado = "ERROR";
+            $resultado->estado = $basededatos->estado;
             $resultado->datos = $basededatos->mensaje;
         }
         else {
@@ -290,7 +298,7 @@ function CrearConexion(){
 
     /**
      * Permite subir una imágen al servidor y registrarla en la BdD.
-     * Devuelve un objeto de clase Resultado con la ID de la imágen
+     * Devuelve un objeto de clase Resultado con la ID de la imágen en la BdD o el detalle del error
      */
     function SubirImagen(){
         $resultado = new Resultado;
@@ -299,19 +307,26 @@ function CrearConexion(){
         $consulta = "INSERT INTO imagen() values()";
         $basededatos->conexion->query($consulta);
         $imagenId = $basededatos->conexion->insert_id;
-        
+
         $datosImagen = $_POST['datosImagen'];
-        $ruta = DatosAImagen($datosImagen,"imagenes",$imagenId);
+        $ruta = DatosAImagen($datosImagen,"../imagenes",$imagenId);
 
-        $consulta2 = "UPDATE imagen set ruta=? where id=?";
-        $sentencia = $basededatos->conexion->prepare($consulta2);
-        $sentencia->bind_param("si",$ruta,$imagenId);
-        $sentencia->execute();
+        if ($ruta->estado == "ERROR") {
+            $resultado->estado = "ERROR";
+            $resultado->datos = $ruta->datos;
 
-        
-        
-        $resultado->estado = $basededatos->estado;
-        $resultado->datos = $imagenId;
+            $consulta3 = "DELETE FROM imagen WHERE id=$imagenId";
+            $basededatos->conexion->query($consulta3);
+
+        } else {
+            $consulta2 = "UPDATE imagen set ruta=? where id=?";
+            $sentencia = $basededatos->conexion->prepare($consulta2);
+            $sentencia->bind_param("ss",$ruta->datos,$imagenId);
+            $sentencia->execute();
+
+            $resultado->estado = $imagenId;
+            $resultado->datos = "OK";
+        }
         
         $basededatos->conexion->close();
         return $resultado;
@@ -325,6 +340,7 @@ function CrearConexion(){
         $id_publicacion = ValidarDatos($_POST['id_publicacion']);
         $id_imagen = ValidarDatos($_POST['id_imagen']);
         $resultado =  new Resultado;
+
         if ( PublicacionExiste($id_publicacion) ) {
             
             $basededatos = CrearConexion();
