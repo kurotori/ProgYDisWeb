@@ -1,0 +1,76 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+}
+
+.bordes{
+    border-radius: 25px;
+    border: 3px solid black;
+    padding: 20px;
+    transition: all 500ms;
+    overflow: scroll;
+}
+
+#listado{
+    position: relative;
+    width: 90%;
+    height: 5%;
+    left: calc(5% - 20px);
+}
+
+#busqueda{
+    position: relative;
+    width: 90%;
+    height: 5%;
+    left: calc(5% - 20px);
+}
+
+
+#nuevaPub{
+    position: relative;
+    width: 80%;
+    left: 10%;
+}
+
+#nuevaPub label{
+    display: inline-block;
+    width: 15%;
+}
+
+#nuevaPub input[type=text] {
+    display: inline-block;
+    width: 80%;
+}
+
+
+#vistaPrevia{
+    position: relative;
+    width: 95%;
+    overflow: auto;
+}
+
+#pubImagenes{
+    position: relative;
+    top: 10px;
+    width: 80%;
+    left: 10%;
+}
+
+.foto{
+    float: left;
+    position: relative;
+    margin-left: 15px;
+}
+
+#btnSubir{
+    position: relative;
+    width: 20%;
+    height: 10%;
+    top: 20px;
+    left: 40%;
+    font-size: larger;
+}

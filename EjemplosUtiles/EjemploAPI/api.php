@@ -1,5 +1,36 @@
 <?php
 
+    /* Zona de Ejecución */
+    $info = new Respuesta;
+    $info->estado = "";
+    $info->datos= "";
+
+    if ($_POST) {
+        if (isset($_POST['modo']) ) {
+            
+            $modo = ValidarDatos($_POST['modo']);
+
+            switch ($modo) {
+                //Modo 1: Listado de todos los libros
+                case '1':
+                    $info = VerLibros();
+                    break;
+                //Modo 2: Buscar libros
+                case '2':
+                    $datoBusqueda = ValidarDatos($_POST['busqueda']);
+                    $info = BuscarLibros($datoBusqueda);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+    }
+
+    $json = TransformarEnJSON($info);
+    MostrarJSON($json);
+
+
     /** */
     class Respuesta{
         public $estado;
@@ -18,6 +49,19 @@
         public $genero;
         public $fecha_pub;
     }
+
+
+    /**
+     * Valida y limpia datos de ingreso para evitar ataques de inyecciones SQL
+     * @param datos Los datos de ingreso que se quieren limpiar.
+     */
+    function ValidarDatos($datos){
+        $datos = trim($datos);
+        $datos = stripslashes($datos);
+        $datos = htmlspecialchars($datos);
+        return $datos;
+    }
+
 
     function CrearConexion(){
         $servidor="localhost";
@@ -70,6 +114,41 @@
         return $respuesta;
     }
 
+
+    function BuscarLibros($busqueda){
+        $basededatos = CrearConexion();
+        $respuesta = new Respuesta;
+        
+        $consulta = "SELECT titulo,genero,fecha_pub from libro where titulo like ?";
+        $sentencia = $basededatos->conexion->prepare($consulta);
+        $sentencia->bind_param("s",$busqueda);
+        $sentencia->execute();
+
+        $datos = $sentencia->get_result();
+
+        if ($datos->num_rows > 0) {
+            $respuesta->estado = "OK";
+            $respuesta->datos = array();
+
+            while ( $fila=$datos->fetch_assoc() ) {
+                $libro = new Libro;
+                $libro->titulo = $fila['titulo'];
+                $libro->genero = $fila['genero'];
+                $libro->fecha_pub = $fila['fecha_pub'];
+                
+                array_push($respuesta->datos, $libro);
+            }
+        }
+        else {
+            $respuesta->estado = "ERROR";
+            $respuesta->datos = "No se encontraron registros";
+        }
+
+        $basededatos->conexion->close();
+        return $respuesta;
+    }
+
+
     function TransformarEnJSON($objeto){
         //1 - Creamos un objeto mediante la clase standard para 
         //  contener la secuencia JSON que crearemos.
@@ -109,10 +188,5 @@
         echo($datosEnJSON);
     
     }
-
-    $info = VerLibros();
-    $json = TransformarEnJSON($info);
-    MostrarJSON($json);
-
 
 ?>
