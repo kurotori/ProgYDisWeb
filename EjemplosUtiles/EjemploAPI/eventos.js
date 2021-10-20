@@ -34,20 +34,29 @@ function cargarLibros() {
             success:function (datos) {
                 
                 console.log(datos);
+            
+                if (datos.Respuesta.estado == "OK") {
+                    listado = datos.Respuesta.datos;
 
-                datos.Respuesta.datos.forEach(dato => {
-                    const pLibro =  document.createElement('p');
-                    const bTitulo = document.createElement('b');
-                    const iGenero = document.createElement('i');
-                    const iFechaPub = document.createElement('i');
-                    bTitulo.textContent = dato.titulo;
-                    iGenero.textContent = " "+dato.genero ;
-                    iFechaPub.textContent = " - "+dato.fecha_pub;
-                    pLibro.appendChild(bTitulo);
-                    pLibro.appendChild(iGenero);
-                    pLibro.appendChild(iFechaPub);
-                    divListado.appendChild(pLibro);
-                });
+                    listado.forEach(libro => {
+                        const pLibro =  document.createElement('p');
+                        const bTitulo = document.createElement('b');
+                        const iGenero = document.createElement('i');
+                        const iFechaPub = document.createElement('i');
+    
+                        bTitulo.textContent = libro.titulo;
+    
+                        iGenero.textContent = " "+libro.genero;
+                        iFechaPub.textContent = " - "+libro.fecha_pub;
+    
+                        pLibro.appendChild(bTitulo);
+                        pLibro.appendChild(iGenero);
+                        pLibro.appendChild(iFechaPub);
+                        divListado.appendChild(pLibro);
+                    });
+                }
+
+                
 
 
                 //la variable 'datos' representa a los datos que vienen del servidor
