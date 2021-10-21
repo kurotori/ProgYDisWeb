@@ -50,10 +50,13 @@ function buscarLibros() {
                     listado.forEach(libro => {
                         const pLibro =  document.createElement('p');
                         const bTitulo = document.createElement('b');
+                        const aLinkLibro = document.createElement('a');
                         const iGenero = document.createElement('i');
                         const iFechaPub = document.createElement('i');
-    
+                        
                         bTitulo.textContent = libro.titulo;
+                        aLinkLibro.textContent = bTitulo;
+                        aLinkLibro.href = "verlibro.html?isbn="+libro.isbn;
     
                         iGenero.textContent = " "+libro.genero;
                         iFechaPub.textContent = " - "+libro.fecha_pub;
@@ -132,4 +135,12 @@ function cargarLibros() {
             }
         }
     );
+}
+
+function obtenerParametroURL() {
+    let paginaURL = window.location.href;
+    let datos = paginaURL.split('?');
+    parametro = datos[1].split('=');
+    parametro = parametro[1];
+    return parametro;
 }

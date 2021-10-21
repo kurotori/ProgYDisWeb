@@ -45,6 +45,7 @@
     }
 
     class Libro{
+        public $isbn;
         public $titulo;
         public $genero;
         public $fecha_pub;
@@ -98,6 +99,7 @@
 
             while ( $fila=$datos->fetch_assoc() ) {
                 $libro = new Libro;
+                $libro->isbn = $fila['isbn'];
                 $libro->titulo = $fila['titulo'];
                 $libro->genero = $fila['genero'];
                 $libro->fecha_pub = $fila['fecha_pub'];
@@ -119,7 +121,7 @@
         $basededatos = CrearConexion();
         $respuesta = new Respuesta;
         
-        $consulta = "SELECT titulo,genero,fecha_pub from libro where titulo like ?";
+        $consulta = "SELECT ISBN,titulo,genero,fecha_pub from libro where titulo like ?";
         $sentencia = $basededatos->conexion->prepare($consulta);
         $termino = "%".$busqueda."%";
         $sentencia->bind_param("s",$termino);
@@ -133,6 +135,7 @@
 
             while ( $fila=$datos->fetch_assoc() ) {
                 $libro = new Libro;
+                $libro->isbn = $fila['ISBN'];
                 $libro->titulo = $fila['titulo'];
                 $libro->genero = $fila['genero'];
                 $libro->fecha_pub = $fila['fecha_pub'];
