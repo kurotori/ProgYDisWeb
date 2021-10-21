@@ -11,11 +11,22 @@
     <h1>Libros</h1>
     <h2>Listado Completo</h2>
     <div id="listado" class="bordes">
-        <a href="#" onclick="mostrarListado()">Mostrar Listado</a>
+        <div class="zonaBoton">
+            <a href="#" onclick="mostrarListado()">Mostrar Listado</a>
+        </div>
+        <div class="zonaContenido"></div>
     </div>
+
     <h2>Búsqueda de Libros</h2>
     <div id="busqueda" class="bordes">
-        <a href="#" onclick="mostrarBusqueda()">Mostrar Búsqueda</a>
+        <div class="zonaBoton">
+            <a href="#" onclick="mostrarBusqueda()">Mostrar Búsqueda</a>
+        </div>
+        <div class="zonaBuscador">
+            <input type="text" name="buscaLibro" id="buscaLibro">
+            <button onclick="buscarLibros()">Buscar</button>
+        </div>
+        <div class="zonaContenido"></div>
     </div>
     
 </body>

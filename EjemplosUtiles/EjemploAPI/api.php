@@ -121,7 +121,8 @@
         
         $consulta = "SELECT titulo,genero,fecha_pub from libro where titulo like ?";
         $sentencia = $basededatos->conexion->prepare($consulta);
-        $sentencia->bind_param("s",$busqueda);
+        $termino = "%".$busqueda."%";
+        $sentencia->bind_param("s",$termino);
         $sentencia->execute();
 
         $datos = $sentencia->get_result();
