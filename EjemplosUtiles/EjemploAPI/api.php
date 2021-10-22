@@ -90,7 +90,7 @@
         $basededatos = CrearConexion();
         $respuesta = new Respuesta;
         
-        $consulta = "SELECT titulo,genero,fecha_pub from libro";
+        $consulta = "SELECT isbn,titulo,genero,fecha_pub from libro";
         $datos = $basededatos->conexion->query($consulta);
 
         if ($datos->num_rows > 0) {

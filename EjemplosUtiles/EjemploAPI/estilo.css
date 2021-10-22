@@ -93,6 +93,11 @@ html, body{
     border-bottom: 1px solid grey;
 }
 
+.zonaContenido p::before{
+    content: url(Freepik_book_30x30.png);
+    wi
+}
+
 .zonaBuscador{
     display: none;
     height: 20px;
