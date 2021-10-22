@@ -55,13 +55,13 @@ function buscarLibros() {
                         const iFechaPub = document.createElement('i');
                         
                         bTitulo.textContent = libro.titulo;
-                        aLinkLibro.textContent = bTitulo;
                         aLinkLibro.href = "verlibro.html?isbn="+libro.isbn;
-    
+                        aLinkLibro.appendChild(bTitulo);
+
                         iGenero.textContent = " "+libro.genero;
                         iFechaPub.textContent = " - "+libro.fecha_pub;
     
-                        pLibro.appendChild(bTitulo);
+                        pLibro.appendChild(aLinkLibro);
                         pLibro.appendChild(iGenero);
                         pLibro.appendChild(iFechaPub);
                         divBusquedaContenido.appendChild(pLibro);
