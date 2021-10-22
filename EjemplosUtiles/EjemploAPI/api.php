@@ -20,6 +20,11 @@
                     $datoBusqueda = ValidarDatos($_POST['busqueda']);
                     $info = BuscarLibros($datoBusqueda);
                     break;
+                //Modo 3: obtener datos completos de un libro y su autor
+                case '3':
+                    $isbnLibro = ValidarDatos($_POST['isbnLibro']);
+                    $info = BuscarDatosDelLibro($isbnLibro);
+                    break;
                 default:
                     # code...
                     break;
@@ -49,6 +54,13 @@
         public $titulo;
         public $genero;
         public $fecha_pub;
+    }
+
+    class Autor{
+        public $nombreCompleto;
+        public $nacionalidad;
+        public $fecha_nac;
+        public $fecha_dec;
     }
 
 
@@ -117,6 +129,9 @@
     }
 
 
+    /**
+     * Busca los datos de libros de acuerdo a un criterio de búsqueda
+     */
     function BuscarLibros($busqueda){
         $basededatos = CrearConexion();
         $respuesta = new Respuesta;
@@ -141,6 +156,55 @@
                 $libro->fecha_pub = $fila['fecha_pub'];
                 
                 array_push($respuesta->datos, $libro);
+            }
+        }
+        else {
+            $respuesta->estado = "ERROR";
+            $respuesta->datos = "No se encontraron registros";
+        }
+
+        $basededatos->conexion->close();
+        return $respuesta;
+    }
+
+    function BuscarDatosDelLibro($isbnLibro){
+        $basededatos = CrearConexion();
+        $respuesta = new Respuesta;
+        
+        $consulta = "SELECT libro.ISBN, libro.titulo, libro.genero, libro.fecha_pub, 
+        concat_ws(' ',autor.nombre, autor.apellido) as nombreCompleto, 
+        autor.nacionalidad, autor.fecha_nac, autor.fecha_dec
+        from autor inner join escribe inner join libro
+        where autor.DOC = escribe.autor_DOC
+        and libro.ISBN = escribe.libro_ISBN
+        and libro.ISBN = ?";
+
+        $sentencia = $basededatos->conexion->prepare($consulta);
+        $sentencia->bind_param("s",$isbnLibro);
+        $sentencia->execute();
+
+        $datos = $sentencia->get_result();
+
+        if ($datos->num_rows > 0) {
+            $respuesta->estado = "OK";
+            $respuesta->datos = array();
+
+            while ( $fila=$datos->fetch_assoc() ) {
+                $libro = new Libro;
+                $autor = new Autor;
+                
+                $libro->isbn = $fila['libro.ISBN'];
+                $libro->titulo = $fila['libro.titulo'];
+                $libro->genero = $fila['libro.genero'];
+                $libro->fecha_pub = $fila['libro.fecha_pub'];
+                
+                $autor->nombreCompleto = $fila['nombreCompleto'];
+                $autor->nacionalidad = $fila['autor.nacionalidad'];
+                $autor->fecha_nac = $fila['autor.fecha_nac'];
+                $autor->fecha_dec = $fila['autor.fecha_dec'];
+
+                array_push($respuesta->datos, $libro);
+                array_push($respuesta->datos, $autor);
             }
         }
         else {

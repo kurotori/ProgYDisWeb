@@ -93,9 +93,6 @@ html, body{
     border-bottom: 1px solid grey;
 }
 
-.zonaContenido p::before{
-    content: url(Freepik_book_30x30.png);
-}
 
 .zonaBuscador{
     display: none;
@@ -114,4 +111,31 @@ html, body{
 
 #buscaLibro{
     width: 80%;
+}
+
+.tablaResultado{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.tablaResultado th{
+    position: sticky;
+    top: 0px;
+    text-align: center;
+    background-color: white;
+}
+
+.tablaResultado td{
+    text-align: center;
+    
+}
+
+.tablaResultado .tituloLibro{
+    text-align: left;
+}
+
+.tablaResultado .generoLibro{
+    border: 1px black;
+    border-style: none solid none solid;
 }
