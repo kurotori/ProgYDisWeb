@@ -171,9 +171,15 @@
         $basededatos = CrearConexion();
         $respuesta = new Respuesta;
         
-        $consulta = "SELECT libro.ISBN, libro.titulo, libro.genero, libro.fecha_pub, 
+        $consulta = "SELECT 
+        libro.ISBN AS isbn, 
+        libro.titulo AS titulo, 
+        libro.genero AS genero, 
+        libro.fecha_pub AS fecha_pub, 
         concat_ws(' ',autor.nombre, autor.apellido) as nombreCompleto, 
-        autor.nacionalidad, autor.fecha_nac, autor.fecha_dec
+        autor.nacionalidad as nacionalidad, 
+        autor.fecha_nac as fecha_nac, 
+        autor.fecha_dec as fecha_dec
         from autor inner join escribe inner join libro
         where autor.DOC = escribe.autor_DOC
         and libro.ISBN = escribe.libro_ISBN
@@ -193,15 +199,15 @@
                 $libro = new Libro;
                 $autor = new Autor;
                 
-                $libro->isbn = $fila['libro.ISBN'];
-                $libro->titulo = $fila['libro.titulo'];
-                $libro->genero = $fila['libro.genero'];
-                $libro->fecha_pub = $fila['libro.fecha_pub'];
+                $libro->isbn = $fila['isbn'];
+                $libro->titulo = $fila['titulo'];
+                $libro->genero = $fila['genero'];
+                $libro->fecha_pub = $fila['fecha_pub'];
                 
                 $autor->nombreCompleto = $fila['nombreCompleto'];
-                $autor->nacionalidad = $fila['autor.nacionalidad'];
-                $autor->fecha_nac = $fila['autor.fecha_nac'];
-                $autor->fecha_dec = $fila['autor.fecha_dec'];
+                $autor->nacionalidad = $fila['nacionalidad'];
+                $autor->fecha_nac = $fila['fecha_nac'];
+                $autor->fecha_dec = $fila['fecha_dec'];
 
                 array_push($respuesta->datos, $libro);
                 array_push($respuesta->datos, $autor);

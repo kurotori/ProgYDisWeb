@@ -21,3 +21,26 @@ html, body{
     width: 90%;
     height: 90%;
 }
+
+.datos{
+    border-bottom: 2px solid black;
+}
+
+.datos span{
+    display: inline-block;
+    width: 50%;
+}
+
+.datos b{
+    display: inline-block;
+    width: 25%;
+}
+
+#autor h2{
+    display: inline-block;
+    width: 25%;
+}
+
+.nombreAutor{
+    font-size: xx-large;
+}
