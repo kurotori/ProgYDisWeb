@@ -4,6 +4,8 @@ USE ejemPubl;
 
 CREATE TABLE usuario(
     nombre varchar(20) not null unique primary KEY,
+    sal varchar(101) not null,
+    hashP varchar(65) not null,
     fecha_reg timestamp not null default current_timestamp
 );
 
