@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    
+    <div id="registroUsuario">
+        <h1>Registro de Usuario</h1>
+        <form>
+            <div class="fila">
+                <div class="celdaLabel">
+                    <label for="nombre">Nombre:</label>
+                </div>
+                
+                <input type="text" name="nombre" id="nombre">
+                <button id="btn_dispNombre">Chequear</button>
+                <br>
+            </div>
+            
+
+            <label for="pass">Contraseña:</label>
+            <input type="password" name="pass" id="pass"><br>
+
+            <label for="confPass">Confirmar Contraseña:</label>
+            <input type="password" name="confPass" id="confPass">
+        </form>
+        <button id="btnEnviar">Registrarse</button>
+    </div>
+    
+</body>
+<script src="../jquery-3.6.0.js"></script>
+<script src="sha256.js"></script>
+<script src="eventos.js"></script>
+</html>
