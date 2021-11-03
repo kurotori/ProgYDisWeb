@@ -44,3 +44,30 @@ html, body{
 .nombreAutor{
     font-size: xx-large;
 }
+
+.cerrar{
+    position: absolute;
+    width: 10%;
+    transition: all 150ms;
+    top: auto;
+    bottom: 10px;
+    font-size: larger;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.cerrar:hover{
+    bottom: 15px;
+    box-shadow: 3px 3px black;
+}
+
+.cerrar:active{
+    bottom: 10px;
+    box-shadow: none;
+    background-color: black;
+    color: white;
+}
+
+a:visited{
+    color: black;
+}
