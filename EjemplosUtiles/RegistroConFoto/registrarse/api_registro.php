@@ -13,7 +13,11 @@
             switch ($modo) {
                 //Modo 1: Registro de Usuario
                 case '1':
-                    $info = RegistrarUsuario();
+                    $nombreUsuario = ValidarDatos($_POST['nombreUsuario']);
+                    $sal = ValidarDatos($_POST['sal']);
+                    $hash = ValidarDatos($_POST['hash']);
+
+                    $info = RegistrarUsuario($nombreUsuario,$hash,$sal);
                     break;
                 //Modo 2: Determinar si un nombre de usuario ya existe en el sistema
                 case '2':
@@ -162,5 +166,25 @@
         $basededatos->conexion->close();
         return $respuesta;
     }
+
+    function RegistrarUsuario($nombreUsuario, $hash, $sal){
+        $basededatos = CrearConexion();
+        $respuesta = new Respuesta;
+        
+        $consulta = "INSERT into usuario(nombre,sal,hashP) values(?,?,?)";
+
+        $sentencia = $basededatos->conexion->prepare($consulta);
+        $sentencia->bind_param("sss",$nombreUsuario,$sal,$hash);
+        $sentencia->execute();
+
+        $datos = $sentencia->get_result();
+        if ($datos->affected_rows > 1) {
+            $respuesta->estado = "OK";
+            $respuesta->datos = array();
+            array_push($respuesta->datos,true);
+            array_push($respuesta->datos,"Registro exitoso");
+        }
+    }
+    
 
 ?>

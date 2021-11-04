@@ -83,6 +83,15 @@ function RegistrarUsuario() {
                         //5 - Establecemos una función que se ejecuta en caso de éxito en la operación
                         success:function (data) {
                             console.log(data);
+                            let estado = data.Respuesta.estado;
+                            let datos = data.Respuesta.datos;
+                            console.log(datos);
+                            if (!datos[0]) {
+                                EnviarDatosDeUsuario(nombreUsuario,hash,sal);
+                            } else {
+                                alert(datos[1]);
+                            }
+
                             //la variable 'data' representa a los datos que vienen del servidor
                         },
                         //6 - Establecemos una función que se ejecuta en caso de error
@@ -100,6 +109,46 @@ function RegistrarUsuario() {
     } else {
         alert("El nombre de usuario debe tener entre 8 y 12 caracteres.");
     }
+}
+
+
+function EnviarDatosDeUsuario(nombreUsuario,hash,sal) {
+    $.ajax(
+        {
+            //1 - Indicar la URL de donde se obtienen los datos
+            url:"api_registro.php",
+            //2 - Método para el envío de los datos, puede ser 'GET' o 'POST'
+            method: "POST",
+            //3 - Indicar la forma que tendran los datos, en este caso es 'json'
+            datatype: "json",
+            //4 - Indicar los datos que se incluirán. 
+            // Primero se indica el nombre del dato esperado por la página y luego el dato
+            data:{
+                'modo' : 1,
+                'nombreUsuario' : nombreUsuario,
+                'sal' : sal,
+                'hash' : hash
+            },
+            //5 - Establecemos una función que se ejecuta en caso de éxito en la operación
+            success:function (data) {
+                console.log(data);
+                /* let estado = data.Respuesta.estado;
+                let datos = data.Respuesta.datos;
+                console.log(datos);
+                if (!datos[0]) {
+                    
+                } else {
+                    alert(datos[1]);
+                } */
+
+                //la variable 'data' representa a los datos que vienen del servidor
+            },
+            //6 - Establecemos una función que se ejecuta en caso de error
+            error:function(errorThrown){
+                console.error(errorThrown.responseText);
+            }
+        }
+    );
 }
 
 
