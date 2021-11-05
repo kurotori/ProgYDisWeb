@@ -12,15 +12,9 @@
     <div id="registroUsuario">
         <h1>Registro de Usuario</h1>
         <form>
-            <div class="fila">
-                <div class="celdaLabel">
-                    <label for="nombre">Nombre:</label>
-                </div>
-                
+                <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre">
-                <button id="btn_dispNombre">Chequear</button>
                 <br>
-            </div>
             
 
             <label for="pass">Contraseña:</label>
@@ -29,7 +23,7 @@
             <label for="confPass">Confirmar Contraseña:</label>
             <input type="password" name="confPass" id="confPass">
         </form>
-        <button id="btnEnviar">Registrarse</button>
+        <button id="btnEnviar" onclick="RegistrarUsuario()">Registrarse</button>
     </div>
     
 </body>

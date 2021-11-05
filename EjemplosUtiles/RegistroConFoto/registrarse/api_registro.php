@@ -184,6 +184,9 @@
             array_push($respuesta->datos,true);
             array_push($respuesta->datos,"Registro exitoso");
         }
+
+        $basededatos->conexion->close();
+        return $respuesta;
     }
     
 
