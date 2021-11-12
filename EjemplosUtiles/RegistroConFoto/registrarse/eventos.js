@@ -158,10 +158,7 @@ function probar() {
     return GenerarHash(password,sal);
 }
 
-document.addEventListener('click', function() {
-    
-    console.log(window.event.target);   
-}, false);
+
 
 
 

@@ -1,0 +1,57 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+.fila{
+    width: 100%;
+}
+
+.columna{
+    height: 100%;
+}
+
+#encabezado{
+    height: 10%;
+}
+
+#encabezado h1{
+    margin: 0px;
+}
+
+#contenido{
+    height: 90%;
+}
+
+.bloque{
+    position: relative;
+    float: left;
+    border: 2px solid;
+}
+
+.hielo{
+    background-color: aquamarine;
+    border-color: blue;
+}
+
+.agua{
+    background-color: blue;
+    border-color: blue;
+}
+
+.ancho{
+    width: calc(100% - 4px);
+}
+
+.alto{
+    height:  calc(100% - 4px);
+}
+
+.medioAncho{
+    width: calc(50% - 4px);
+}
+
+.medioAlto{
+    height: calc(50% - 4px);
+}
