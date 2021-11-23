@@ -6,9 +6,52 @@ html,body{
 
 #contenedor{
     display: grid;
+    gap: 0px;
     position: relative;
     width: 80%;
     height: 80%;
     left: 10%;
     top: 10%;
+}
+
+.celda{
+    width: 50px;
+    height: 50px;
+    background-color:lightblue ;
+}
+
+.celda:hover{
+    background-color: aqua;
+}
+
+.col_1{
+    grid-column-start:1;
+}
+
+.col_2{
+    grid-column-start: 2;
+}
+
+.col_3{
+    grid-column-start: 3;
+}
+
+.col_4{
+    grid-column-start: 4;
+}
+
+.col_5{
+    grid-column-start: 5;
+}
+
+.col_6{
+    grid-column-start: 6;
+}
+
+.col_7{
+    grid-column-start: 7;
+}
+
+.fil_1{
+    
 }
