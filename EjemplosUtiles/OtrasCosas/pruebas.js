@@ -18,6 +18,7 @@ function CompletarTablero() {
             const divCelda = document.createElement('div');
             divCelda.classList.add('celda');
             divCelda.classList.add('col_'+(x+1));
+            divCelda.classList.add('fil_'+(y+1));
             divContenedor.appendChild(divCelda)
             const celda = new Celda(x,y,divCelda);
             tablero.push(celda);

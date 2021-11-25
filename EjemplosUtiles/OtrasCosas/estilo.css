@@ -6,17 +6,19 @@ html,body{
 
 #contenedor{
     display: grid;
-    gap: 0px;
+    gap: 10px;
     position: relative;
-    width: 80%;
-    height: 80%;
+    width: 550px;
+    height: 470px;
     left: 10%;
     top: 10%;
+    background-color: blue;
+    border: solid 10px blue;
 }
 
 .celda{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background-color:lightblue ;
 }
 
@@ -53,5 +55,25 @@ html,body{
 }
 
 .fil_1{
-    
+    grid-row-start: 1;
+}
+
+.fil_2{
+    grid-row-start: 2;
+}
+
+.fil_3{
+    grid-row-start: 3;
+}
+
+.fil_4{
+    grid-row-start: 4;
+}
+
+.fil_5{
+    grid-row-start: 5;
+}
+
+.fil_6{
+    grid-row-start: 6;
 }
