@@ -5,9 +5,17 @@ class Celda{
         this.x = x;
         this.y = y;
         this.div = div;
-        this.vecinos = Array();
     }
-
+    vecinos = {
+        v_N:"",
+        v_S:"",
+        v_W:"",
+        v_E : "",
+        v_NW : "",
+        v_NE : "",
+        v_SW : "",
+        v_SE : ""
+    }
 }
 
 let tablero = Array();
@@ -19,53 +27,53 @@ function CompletarTablero() {
             divCelda.classList.add('celda');
             divCelda.classList.add('col_'+(x+1));
             divCelda.classList.add('fil_'+(y+1));
-            divContenedor.appendChild(divCelda)
+            divCelda.addEventListener('click',MarcarVecinos,false);
+            divContenedor.appendChild(divCelda);
+
             const celda = new Celda(x,y,divCelda);
             tablero.push(celda);
         }
-        
     }
+    ObtenerTodosVecinos();
 }
 
 
 function ObtenerVecinos(celda) {
-    let vecinos = Array();
     tablero.forEach(elemento => {
         switch (elemento.x) {
             case (celda.x+1):
                 if (elemento.y == (celda.y-1)) {
-                    vecinos.push(elemento);
+                    celda.vecinos.v_NE = elemento;
                 }
                 if (elemento.y == celda.y) {
-                    vecinos.push(elemento);
+                    celda.vecinos.v_E = elemento;
                 }
                 if (elemento.y == (celda.y+1)) {
-                    vecinos.push(elemento);
+                    celda.vecinos.v_SE = elemento;
                 }
                 break;
             case(celda.x):
                 if (elemento.y == (celda.y-1)) {
-                    vecinos.push(elemento);
+                    celda.vecinos.v_N = elemento;
                 }
                 if (elemento.y == celda.y+1) {
-                    vecinos.push(elemento);
+                    celda.vecinos.v_S = elemento;
                 }
                 break;
             case (celda.x-1):
                     if (elemento.y == (celda.y-1)) {
-                        vecinos.push(elemento);
+                        celda.vecinos.v_NW = elemento;
                     }
                     if (elemento.y == celda.y) {
-                        vecinos.push(elemento);
+                        celda.vecinos.v_W = elemento;
                     }
                     if (elemento.y == (celda.y+1)) {
-                        vecinos.push(elemento);
+                        celda.vecinos.v_SW = elemento;
                     }
             default:
                 break;
         }
     });
-    celda.vecinos = vecinos;
 }
 
 function ObtenerTodosVecinos() {
@@ -75,6 +83,27 @@ function ObtenerTodosVecinos() {
 }
 
 CompletarTablero();
+ObtenerTodosVecinos();
 let celda = tablero[5];
-ObtenerVecinos(celda);
+//ObtenerVecinos(celda);
+
+function LimpiarTablero() {
+    tablero.forEach(celda => {
+        celda.div.innerText = "";
+    });
+}
+
+function MarcarVecinos(celda) {
+    LimpiarTablero();
+    let arr_vecinos = Object.values(celda.vecinos);
+    let arr_vecinos_cl = Object.keys(celda.vecinos);
+    
+    for (let i = 0; i < arr_vecinos.length; i++) {
+        if (arr_vecinos[i].div) {
+            arr_vecinos[i].div.innerText = arr_vecinos_cl[i];
+        }
+        
+    }
+}
+
 
