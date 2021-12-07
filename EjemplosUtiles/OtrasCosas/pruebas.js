@@ -28,6 +28,7 @@ function CompletarTablero() {
             divCelda.classList.add('col_'+(x+1));
             divCelda.classList.add('fil_'+(y+1));
             divCelda.addEventListener('click',MarcarVecinos,false);
+            divCelda.id = (x+1)+'_'+(y+1);
             divContenedor.appendChild(divCelda);
 
             const celda = new Celda(x,y,divCelda);
@@ -84,23 +85,24 @@ function ObtenerTodosVecinos() {
 
 CompletarTablero();
 ObtenerTodosVecinos();
-let celda = tablero[5];
-//ObtenerVecinos(celda);
+
 
 function LimpiarTablero() {
     tablero.forEach(celda => {
-        celda.div.innerText = "";
+        celda.div.classList.remove('marcada');
     });
 }
 
-function MarcarVecinos(celda) {
+function MarcarVecinos() {
     LimpiarTablero();
-    let arr_vecinos = Object.values(celda.vecinos);
-    let arr_vecinos_cl = Object.keys(celda.vecinos);
-    
-    for (let i = 0; i < arr_vecinos.length; i++) {
-        if (arr_vecinos[i].div) {
-            arr_vecinos[i].div.innerText = arr_vecinos_cl[i];
+    let celda = window.event.target;
+    //console.log(celda);
+    let elm = tablero.find(
+        elemento=>elemento.div.id == celda.id
+    );
+    for (const vecino in elm.vecinos) {
+        if (elm.vecinos[vecino]) {
+            elm.vecinos[vecino].div.classList.add('marcada');
         }
         
     }
