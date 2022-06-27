@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre">
+        <br>
+        <label for="ci">CI:</label>
+        <input type="text" name="ci" id="ci">
+        <br>
+        <label for="fecha_nac">Fecha de Nacimiento:</label>
+        <input type="date" name="fecha_nac" id="fecha_nac">
+        <br>
+        <label for="email">E-Mail:</label>
+        <input type="text" name="email" id="email">
+        <br>
+        
+    </form>
+    <button id="btn_enviar" onclick="enviarFormulario()">Enviar</button>
+</body>
+<script>
+    let formulario = document.getElementById('formulario');
+
+    /**
+     *Toma los datos del formulario y los envía
+     */
+    async function enviarFormulario() {
+        try {
+            const formDatos = new FormData(formulario);
+            const respuesta = await prepararDatos(formDatos);
+            console.log(respuesta);
+            alert(respuesta.Respuesta.estado+": "+respuesta.Respuesta.mensaje)
+        } catch (error) {
+            console.error(error);
+        } 
+    }
+
+
+    /**
+     * Prepara los datos a ser enviados
+     * */
+    async function prepararDatos(datos) {
+        
+        const datosEnBruto = Object.fromEntries(datos.entries());
+        let datosJSON = JSON.stringify(datosEnBruto);
+        
+        //console.log(datosJSON);
+        const respuesta = await fetch("crear.php",
+            {
+                method:"POST",
+                headers: {
+			        "Content-Type": "application/json",
+			        "Accept": "application/json"
+		        },
+                body: datosJSON
+            }
+        );
+        
+    
+	    if (!respuesta.ok) {
+		    const errorMessage = await response.text();
+		    throw new Error(errorMessage);
+	    }
+
+	return respuesta.json();
+    }
+
+</script>
+</html>
