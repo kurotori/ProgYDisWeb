@@ -1,10 +1,12 @@
 <?php
+    session_start();
 
-//  if (isset($_COOKIE['cookie'])) {
     $estado="";
 
     if( isset( $_COOKIE['sesionEjemplo'] ) ){
-        header("Location: abrirSesion.php");
+        echo("Se encontraron cookies, redirigiendo en 5 segundos...");
+        header("Refresh:5; url=abrirSesion.php");
+        //header("Location: abrirSesion.php");
         exit();
     }
     else{

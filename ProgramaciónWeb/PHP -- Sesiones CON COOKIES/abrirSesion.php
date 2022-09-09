@@ -8,20 +8,33 @@
     if ( isset( $_SESSION['nombreUsuario'] ) ) {
         $nombreUsuario = $_SESSION['nombreUsuario'];
 
-        $estado = "Se recuperó una sesión existente a nombre de: $nombreUsuario";
+        //Chequeamos si existen cookies
+        if ( isset( $_COOKIE['sesionEjemplo'] ) ) {
+            $estado = "Se recuperó una una cookie y una sesión existente a nombre de: $nombreUsuario";
+        } else {
+            $estado = "Se recuperó una sesión existente a nombre de: $nombreUsuario";
+        }
+        
+        
+        
     }
-    //Chequeo de existencia de cookies
+    //Si no hay sesión, chequeo de existencia de cookies
     elseif( isset( $_COOKIE['sesionEjemplo'] ) ){
         
+        //Si la cookie existe, creamos una variable para su contenido
+        //usaremos la función explode() para separar las claves de los datos
         $valorCookie = explode( ':', $_COOKIE['sesionEjemplo'] );
 
+        //Almacenamos el primer valor, que corresponderá al nombre del usuario
         $nombreUsuario = $valorCookie[0];
 
+        //Almacenamos el nombre del usuario en los datos de la sesión
         $_SESSION['nombreUsuario'] = $nombreUsuario;
 
+        //Actualizamos la cookie y establecemos su caducidad en una hora
         setcookie( "sesionEjemplo", $_COOKIE['sesionEjemplo'], time()+3600 );
 
-        $estado = "Se recuperó una cookie con una sesión existente a nombre de: $nombreUsuario";
+        $estado = "Se recuperó una cookie y recreeamos una sesión a nombre de: $nombreUsuario";
     }
 
     //Si no hay una sesión, ni cookies, se inicia una sesión y se almacena en una cookie
@@ -34,8 +47,10 @@
 
         setcookie("sesionEjemplo",$valorCookie,time()+3600);
 
-        $estado = "Se inició una sesión a nombre de: $nombreUsuario";
-    }    
+        $estado = "Se inició una sesión NUEVA a nombre de: $nombreUsuario";
+    }  
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +71,8 @@
 
     <p>
         <?php
-            echo 'ID de sesión: <b>'.session_id().'</b> ';
+            echo 'ID de sesión: <b>'.session_id().'</b> <br>';
+            
         ?>
     </p>
 
