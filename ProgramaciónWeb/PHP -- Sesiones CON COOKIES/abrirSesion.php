@@ -14,9 +14,7 @@
         } else {
             $estado = "Se recuperó una sesión existente a nombre de: $nombreUsuario";
         }
-        
-        
-        
+                        
     }
     //Si no hay sesión, chequeo de existencia de cookies
     elseif( isset( $_COOKIE['sesionEjemplo'] ) ){
