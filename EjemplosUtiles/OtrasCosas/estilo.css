@@ -26,6 +26,10 @@ html,body{
     background-color: aqua;
 }
 
+.marcada{
+    background-color: greenyellow;
+}
+
 .col_1{
     grid-column-start:1;
 }
