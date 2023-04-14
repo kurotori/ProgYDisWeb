@@ -9,7 +9,10 @@
 <body>
 
     <?php
-        /**
+        /**************************************************************************************
+         * NOTA: Se recomienda fuertemente NO USAR WHILE en el desarrollo de aplicaciones web.*
+         * ************************************************************************************
+         * 
          * El bucle WHILE permite ejecutar un conjunto de instrucciones de forma repetitiva
          * mientras una condición se cumpla. Si la condición no se cumple, se termina la ejecución
          * del bucle. 
