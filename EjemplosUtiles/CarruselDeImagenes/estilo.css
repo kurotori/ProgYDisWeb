@@ -1,0 +1,39 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+#ventana{
+    position: relative;
+    width: 250px;
+    height: 150px;
+    top: 20px;
+    left: calc( (100% - 250px) / 2);
+    right: auto;
+    border: 1px solid black;
+    overflow-x: hidden;
+    transition: all 500ms;
+}
+
+#carrusel{
+    
+    height: 100%;
+}
+
+.marco img{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: calc((100% - 52px) / 2);
+    left: calc((100% - 52px) / 2);
+    border: 1px solid black;
+    background-color: white;
+}
+
+.marco{
+    position: relative;
+    float: left;
+    height: 100%;
+    background-color: grey;
+}
